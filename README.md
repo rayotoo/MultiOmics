@@ -7,5 +7,5 @@ https://drive.google.com/file/d/16j6H-BH__RbJmUNgtnK1a_yJVGnGgCrM/view?usp=shari
 ```
 ## 2. Copy the folder "download" to the path where you have/will be running the 
 ```
-https://drive.google.com/file/d/16j6H-BH__RbJmUNgtnK1a_yJVGnGgCrM/view?usp=sharing
+"DNA methylation/downloads"
 ```

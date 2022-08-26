@@ -1,3 +1,9 @@
+
+[![LICENSE](https://img.shields.io/github/license/rayotoo/MultiOmics?style=flat-square&color=green)](https://github.com/rayotoo/MultiOmics/blob/main/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/rayotoo/MultiOmics?style=flat-square)](https://github.com/rayotoo/sMultiOmics/issues)
+[![GitHub stars](https://img.shields.io/github/stars/rayotoo/MultiOmics?style=flat-square&color=important)](https://github.com/rayotoo/MultiOmics/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/rayotoo/MultiOmics?style=flat-square&color=blueviolet)](https://github.com/rayotoo/MultiOmics/network/members)
+
 # MultiOmics
 Repository with Proteomics , DNA methylation data analysis and Bulk RNA-seq and Single-Cell RNA-seq analysis
 

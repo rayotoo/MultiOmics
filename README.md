@@ -1,4 +1,4 @@
-
+[![CI](https://github.com/rayotoo/MultiOmics/actions/workflows/blank.yml/badge.svg)](https://github.com/rayotoo/MultiOmics/actions/workflows/blank.yml)
 [![LICENSE](https://img.shields.io/github/license/rayotoo/MultiOmics?style=flat-square&color=green)](https://github.com/rayotoo/MultiOmics/blob/main/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/rayotoo/MultiOmics?style=flat-square)](https://github.com/rayotoo/sMultiOmics/issues)
 [![GitHub stars](https://img.shields.io/github/stars/rayotoo/MultiOmics?style=flat-square&color=important)](https://github.com/rayotoo/MultiOmics/stargazers)

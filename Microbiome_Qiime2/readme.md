@@ -6,3 +6,7 @@
 A tutorial of an end-to-end microbiome data analysis.
 # Work in progress...
 
+# Excellent tutorial
+```
+https://uw-madison-microbiome-hub.github.io/Qiime2-Microbiome-workshop/
+```

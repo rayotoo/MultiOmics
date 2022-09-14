@@ -15,3 +15,8 @@ https://drive.google.com/file/d/16j6H-BH__RbJmUNgtnK1a_yJVGnGgCrM/view?usp=shari
 ```
 "DNA methylation/downloads"
 ```
+
+## 3. Excellent R book of various types of Enrichment analysis
+```
+https://yulab-smu.top/biomedical-knowledge-mining-book/enrichplot.html
+```

@@ -1,0 +1,470 @@
+---
+title: "JvRad_RNAseqProteomics_Integration"
+author: "Raymond Otoo"
+date: "2024-01-26"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+####Reference using DIABLO from mixOmics with similar data
+```{r}
+###############################################################################################################################################################################
+##      https://github.com/mchimenti/covid_multiomics_mar2022/tree/main
+
+##############################################################################################################################################################################
+```
+
+
+##Download the latest mixomics version from bioconductor
+```{r}
+# Install BiocManager if not already installed
+#if (!requireNamespace("BiocManager", quietly = TRUE))
+#    install.packages("BiocManager")
+
+#BiocManager::valid()
+
+# install mixOmics
+#BiocManager::install("mixOmics")
+
+```
+## 1. Load the mixOmics package
+```{r}
+library(mixOmics)
+```
+
+## set working directory
+```{r}
+setwd('E:/new_workflow/integration/')
+```
+
+
+## Read in the finalCounts(table with the genes and counts) for RNA and Proteomics data of proteins and their scores
+## 2. Preprocessing of RNAseq count data 
+```{r}
+countdata <- read.table("E:/new_workflow/results/5_final_counts/normalized_counts_significant.txt", header = TRUE, sep = '\t')
+
+#remove the extra column names leaving only the sample names and gene Ids
+countdata <- countdata[,!colnames(countdata) %in% c("Chr","Start","End","Strand","Length")]
+
+#transpose rnaseq dataframe while maintaning the column names
+countdata_t <- as.data.frame(t(countdata[,-1]))
+colnames(countdata_t)<- countdata[,1]
+
+head(countdata_t)
+```
+
+## 3.Preprocessing of Proteomics 
+```{r}
+#This file when received from the core was named as "AllenAR_092723_TMT_protein_results" and other subsequent files will have a similar naming pattern.
+#It was then saved as a .csv file and renamed to this.
+
+#read the normalized proteomics data
+proteomics_combined <- read.csv("E:/new_workflow/integration/TMT_protein_results.csv", header = TRUE)
+
+
+#remove the extra column names leaving only the sample names and gene Ids
+proteomics_combined <- proteomics_combined[,!colnames(proteomics_combined) %in% 
+                                             c("MajorityproteinIDs",
+                                               "Fastaheaders",
+                                               "Score",
+                                               "id",
+                                               "genesymbol",
+                                               "description",
+                                               "logFC",
+                                               "CI.L",
+                                               "CI.R",
+                                               "average_intensity",
+                                               "t","adj.P.Val",
+                                               "sig.PVal",
+                                               "sig.FDR",
+                                               "B",
+                                               "P.Value")]
+
+
+proteomics_combined
+```
+## 4. Transpose the proteomics dataframe
+```{r}
+#transpose proteomics dataframe
+proteomics_t <- as.data.frame(t(proteomics_combined), stringsAsFactors = FALSE)
+rownames(proteomics_t)<- colnames(proteomics_combined)
+
+#dropped this sample because it was unmatched due to some errors in the mapping of its corresponding sample from the rnaseq. Will be later
+#commented out when the error is fixed
+proteomics_t <- proteomics_t[rownames(proteomics_t)!="s204",,drop=F]
+
+
+#uses the first row as the header
+proteomics_new <- proteomics_t
+colnames(proteomics_new) <- proteomics_t[1,]
+
+#drops the first row which is now the header
+proteomics_new <- proteomics_new[-1,]
+proteomics_new
+```
+## 5. Rename the data so they have the same sample names which will be used to bind them
+```{r}
+# Extract the first 14 characters from the original column names
+short_names <- substr(rownames(countdata_t), 1, 17)
+
+# Remove leading ".." from the short names
+short_names <- gsub("^\\.\\.", "", short_names)
+
+# Rename columns using the cleaned short names
+rownames(countdata_t) <- short_names
+rownames(countdata_t)
+
+new_rownames <- sub("JvRad_Rhipp_","s", rownames(countdata_t))
+rownames(countdata_t)<-new_rownames
+
+countdata_t
+```
+```{r}
+proteomics_new
+countdata_t
+```
+```{r}
+#colnames(proteomics_t)
+rownames(proteomics_new)
+rownames(countdata_t)
+```
+```{r}
+dim(proteomics_new)
+dim(countdata_t)
+```
+```{r}
+class(proteomics_new)
+class(countdata_t)
+```
+```{r}
+prot_column_types <- sapply(proteomics_new, class)
+head(prot_column_types)
+
+rna_column_types <- sapply(countdata_t, class)
+head(rna_column_types)
+```
+```{r}
+proteomics_ordered <- proteomics_new[rev(row.names(proteomics_new)),]
+proteomics_ordered
+
+```
+
+## Bind the normalized proteomics data to the normalized rnaseq count data
+```{r}
+library(data.table)
+library(dplyr)
+
+# Now use bind_rows
+combined_omics <- bind_cols(countdata_t, proteomics_ordered)
+combined_omics
+```
+```{r}
+rownames(combined_omics)
+```
+```{r}
+#create a list for the reponse variable. Which is the treatment groups
+response_list <- c("sham","sham","sham","sham","IR","IR","IR","IR","IR")
+
+response_factor <- factor(response_list)
+response_factor
+
+class(response_factor)
+```
+
+```{r}
+
+# Convert the proteomics dataframe which is of type "chr" to numeric/double
+col_names <- colnames(proteomics_ordered)
+row_names <- rownames(proteomics_ordered)
+
+#convert to numeric or double
+proteomics_ordered <- apply(proteomics_ordered,2,as.numeric)
+
+#reapply colnames and rownames
+colnames(proteomics_ordered) <- col_names
+rownames(proteomics_ordered) <- row_names
+ 
+typeof(proteomics_ordered)
+```
+```{r}
+#convert the rnaseq and proteomics dataframes to a datamatix
+rna_matrix <- as.matrix(countdata_t)
+proteomics_matrix <- as.matrix(proteomics_ordered)
+
+#check to be sure they are of the same type
+typeof(rna_matrix)
+typeof(proteomics_matrix)
+
+#check the dimensions of the matrices
+dim(rna_matrix)
+dim(proteomics_matrix)
+
+#check to be sure the have the same rownames
+rownames(proteomics_matrix)
+rownames(rna_matrix)
+```
+
+
+```{r}
+
+
+# Check if there are any missing values in the entire dataframe
+any_missing <- any(is.na(proteomics_matrix) | is.nan(proteomics_matrix))
+
+# Print the result
+if (any_missing) {
+  print("The dataframe contains missing values.")
+} else {
+  print("The dataframe does not contain missing values.")
+}
+
+
+# Replace missing values with column means
+proteomics_matrix[is.na(proteomics_matrix)] <- colMeans(proteomics_matrix, na.rm = TRUE)
+
+
+# Check if there are any missing values in the entire dataframe
+any_missing <- any(is.na(proteomics_matrix) | is.nan(proteomics_matrix))
+
+# Print the result
+if (any_missing) {
+  print("The dataframe contains missing values.")
+} else {
+  print("The dataframe does not contain missing values.")
+}
+```
+
+```{r}
+###########################################################  Initial Analysis ############################################################
+# Pairwise PLS Comparisons
+
+# set a list of all the X dataframes
+X <- list( mRNA = rna_matrix,
+            proteomics = proteomics_matrix)
+X[1]
+
+#create the response variable as a factor
+response_list <- c("sham","sham","sham","sham","sham","IR","IR","IR","IR")
+Y <- factor(response_list)
+
+
+summary(Y)
+# As mentioned in the methods pages, it is strongly advised that prior to using the DIABLO framework that the data be examinsed in a non-integrative context. 
+# Here, the correlation between the top 25 features of each dataframe (in a pairwise fashion) are shown in Figure
+
+list.keepX = c(25, 25) # select arbitrary values of features to keep
+list.keepY = c(25, 25)
+
+```
+
+
+```{r}
+lapply(X, dim)
+```
+```{r}
+#1. runs the method
+results_1 <- block.plsda(X,Y)
+
+#2. Plots the samples
+plotIndiv(results_1)
+
+#3. Plots the variables
+plotVar(results_1)
+
+```
+
+
+```{r}
+list.keepX <- list(mRNA= c(16,17), proteomics=c(5,5))
+list.keepX
+
+results <- block.splsda(X,Y, keepX = list.keepX)
+plotIndiv(results)
+plotVar(results)
+```
+
+```{r}
+# Parameter choice
+# The design matrix
+design <- matrix(0.1, ncol = length(X), nrow = length(X),
+                 dimnames = list(names(X), names(X)))
+
+diag(design)<- 0
+design
+                 
+```
+```{r}
+#Perform Regression analysis with PLS to further understand the correlation between data sets.
+#calculate the cross-correlations between components associated to each data set.
+
+# Score was 0.972 indicating that the data sets taken in a pairwise manner are highly correlated. Also, the score suggests that a design with weights ~0.9 could be chosen.
+
+regr1 <- pls(X$mRNA, X$proteomics, ncomp = 1)
+cor(regr1$variates$X, regr1$variates$Y)
+```
+```{r}
+#nearZeroVar(rna_matrix)
+nearZeroVar(proteomics_matrix)
+```
+
+```{r}
+## Number of components
+# Fit a block.plsda model without variable selection to assess the global performance of the model and choose the number of components to retain.
+
+# run perf() with 10-fold cross validation repeated 10 times for up to five components and with the specified design matrix.
+
+
+diablo_jvrad <- block.plsda(X,Y, ncomp = 5 , design = design)
+
+perf.diablo_jvrad = perf(diablo_jvrad, validation = 'Mfold', folds = 5, nrepeat = 5)
+
+
+plot(perf.diablo_jvrad)
+```
+
+```{r}
+perf.diablo_jvrad$choice.ncomp$WeightedVote
+```
+
+```{r}
+# choice final ncomp value
+ncomp <- perf.diablo_jvrad$choice.ncomp$WeightedVote["Overall.BER","centroids.dist"]
+
+```
+
+
+```{r}
+length(unique(lapply(X, function(x) rownames)))
+```
+
+```{r}
+# Number of variables to select
+test.keepX <- list(mRNA = c(5:9, seq(10, 25, 5)), 
+                   proteomics = c(seq(5, 25, 5))) 
+
+tune.diablo.jvrad <- tune.block.splsda(X, Y, ncomp = 2, 
+                                      test.keepX = test.keepX, 
+                                      design = design, 
+                                      validation = 'Mfold', 
+                                      folds = 2, 
+                                      nrepeat = 1, 
+                                      dist = "centroids.dist")
+
+```
+
+```{r}
+list.keepX <-tune.diablo.jvrad$choice.keepX
+list.keepX
+```
+
+```{r}
+#final model 
+diablo_jvrad_final <- block.splsda(X,Y, ncomp=2,
+                                   keepX = list.keepX,
+                                   design = design)
+```
+```{r}
+diablo_jvrad_final$design
+```
+```{r}
+#mRNA variables selected on component 1
+selectVar(diablo_jvrad_final,block='mRNA', comp = 1)
+```
+
+```{r}
+plotDiablo(diablo_jvrad_final, ncomp = 1)
+```
+```{r}
+plotIndiv(diablo_jvrad_final, ind.names = FALSE,legend = TRUE,
+          title = 'JvRad, DIABLO comp 1 - 2')
+```
+
+
+
+```{r}
+# Plot arrow
+
+plotArrow(diablo_jvrad_final, ind.names = FALSE, legend = TRUE,
+          title = 'JvRad, DIABLO comp 1 - 2')
+```
+
+```{r, fig.width=7,fig.height=7,dpi=300}
+#variable plots 
+plotVar(diablo_jvrad_final, 
+        var.names = FALSE, 
+        style = 'graphics',
+        legend = TRUE,
+        pch = c(16,17),
+        cex = c(2,2),
+        col = c('darkorchid','brown1'),
+        title ='JvRad, DIABLO comp 1 -2'
+)
+```
+```{r, fig.width=7,fig.height=7,dpi=300}
+#circos plot
+library(ggplot2)
+
+circosPlot(diablo_jvrad_final,
+           cutoff = 0.7,
+           line= TRUE,
+           color.block= c('darkorchid','brown1'),
+           color.cor = c('chocolate','grey20'),
+           size.labels = 1,
+           size.variables = 0.7,
+           linkWidth = 1.6,
+           showIntraLinks = F,
+           size.legend = 0.9,
+           )
+
+```
+
+```{r}
+#Network
+
+#plot relevance network
+
+network(diablo_jvrad_final,
+        blocks = c(1,2),
+        cutoff = 0.4,
+        color.node = c('yellow','lightgreen'),
+        save = 'pdf',name.save = 'JvRad_diablo_network'
+        )
+```
+
+```{r}
+plotLoadings(diablo_jvrad_final, comp = 1, contrib = 'max', method = 'median')
+```
+
+```{r}
+
+perf.diablo_jvrad <- perf(diablo_jvrad_final, 
+                          validation = 'Mfold', 
+                          folds = 2,
+                          nrepeat = 1, 
+                          dist = 'centroids.dist'
+                          )
+
+```
+
+
+```{r}
+perf.diablo_jvrad$MajorityVote.error.rate
+```
+
+```{r}
+perf.diablo_jvrad$WeightedVote.error.rate
+```
+```{r}
+auc.diablo.jvrad <- auroc(diablo_jvrad_final,
+                          roc.block = 'mRNA',
+                          roc.comp = 2,
+                          print = FALSE)
+```
+
+
+

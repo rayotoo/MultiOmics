@@ -33,10 +33,10 @@ Welcome to the Multi-Omics Data Analysis project repository! This repository con
 - Contributions to this project are welcome! If you have improvements, bug fixes, or additional analyses to contribute, please feel free to submit a pull request.
 
 ## License:
-- This project is licensed under the [insert license here]. See the LICENSE file for details.
+- This project is licensed under the XXX. See the LICENSE file for details.
 
 ## Contact:
-- For questions, concerns, or feedback regarding this project, please contact [insert contact information here].
+- For questions, concerns, or feedback regarding this project, please contact raotoo@uams.edu.
 
 We hope you find this repository helpful for your omics data analysis endeavors!
 
@@ -45,4 +45,13 @@ We hope you find this repository helpful for your omics data analysis endeavors!
 ## NB:Excellent R book of various types of Enrichment analysis
 ```
 https://yulab-smu.top/biomedical-knowledge-mining-book/enrichplot.html
+```
+
+## Useful Links-  Supervised OMICs Integration
+```
+https://nbisweden.github.io/workshop_omicsint_ISMBECCB/schedule.html
+```
+
+```
+https://nbisweden.github.io/workshop_omicsint_ISMBECCB/session_ml/SupervisedOMICsIntegration/supervised_omics_integr_CLL.html
 ```

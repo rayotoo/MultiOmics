@@ -1,0 +1,186 @@
+---
+title: "NASA_microbiome_Downstream"
+author: "Raymond Otoo"
+date: "2024-03-19"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir = "E:/NASA_microbiome/downstream")
+```
+
+## R Markdown
+## https://www.yanh.org/2021/01/01/microbiome-r/
+
+
+
+## 1. Files needed
+### A. sample-metadata.tsv - a matrix containing the infomation for analysis
+### B. rooted-tree.qza - a phylogenetic tree indicating the evolutional similarity of microbial features, potentially used when calculating phylogenetic diversity metrics
+### C. table.qza -  a matrix containing the abundances of detected microbial features (OTUs, ASVs, microbial markers)
+### D. taxonomy.qza - an array indicating the taxonomic assignment of features
+```{r}
+# Do not run
+# Run this block once to install libraries and dependencies
+
+#Install and load relevant packages: phyloseq, tidyverse, vegan, DESeq2 , ANCOMBC, ComplexHeatmap. The following code are solely written in R. Now you can open the Rstudio and repeat it.
+p1 <- c("tidyverse", "vegan", "BiocManager")
+p2 <- c("phyloseq", "ANCOMBC", "DESeq2", "ComplexHeatmap")
+load_package <- function(p) {
+  if (!requireNamespace(p, quietly = TRUE)) {
+    ifelse(p %in% p1, 
+           install.packages(p, repos = "http://cran.us.r-project.org/"), 
+           BiocManager::install(p))
+  }
+  library(p, character.only = TRUE, quietly = TRUE)
+}
+
+invisible(lapply(c(p1,p2), load_package))
+```
+`
+```{r}
+
+
+#the metadata
+metadata_test <- read.table(file = "sample-metadata.tsv", 
+                       sep = "\t", 
+                       header = T, 
+                       row.names = 1)
+
+metadata_NASA <- read.table(file = "NASA-Metadata.tsv", 
+                       sep = "\t", 
+                       header = T, 
+                       row.names = 1)
+
+metadata_test
+
+metadata_NASA
+
+```
+
+
+
+
+## 2. Build phyloseq project
+```{r}
+
+############### Original Files ###################
+## table-no-ecmu-hits-TreatmentGroup.qza
+## tree.qza
+## taxonomy.qza
+## NASA-Metadata.tsv
+#################################################
+
+############### After unzipping #################
+## feature-table.tsv
+## tree.nwk
+## taxonomy.tsv
+## NASA-Metadata.tsv
+#################################################
+
+# Load required libraries
+library(phyloseq)
+ 
+# Read the OTU table
+otu <- read.table(file = "feature-table.tsv", 
+                  sep = "\t", 
+                  header = TRUE, 
+                  row.names = 1, 
+                  skip = 1, 
+                  comment.char = "")
+ 
+# Read the taxonomy table
+taxonomy <- read.table(file = "taxonomy.tsv", 
+                       sep = "\t", 
+                       header = TRUE,
+                       row.names = 1)
+ 
+# Clean the taxonomy table
+tax.clean <- data.frame(
+  Kingdom = gsub("d__", "", taxonomy$Taxon),
+  Phylum = gsub("p__", "", taxonomy$Taxon),
+  Class = gsub("c__", "", taxonomy$Taxon),
+  Order = gsub("o__", "", taxonomy$Taxon),
+  Family = gsub("f__", "", taxonomy$Taxon),
+  Genus = gsub("g__", "", taxonomy$Taxon),
+  stringsAsFactors = FALSE
+)
+ 
+# Handle missing values (optional)
+tax.clean[is.na(tax.clean)] <- ""  # Replace NAs with empty strings
+ 
+# Read the metadata
+metadata <- read.table(file = "NASA-Metadata.tsv", 
+                       sep = "\t", 
+                       header = TRUE, 
+                       row.names = 1)
+ 
+# Create OTU, taxonomy, and sample data objects
+OTU <- otu_table(as.matrix(otu), taxa_are_rows = TRUE)
+TAX <- tax_table(as.matrix(tax.clean))
+SAMPLE <- sample_data(metadata)
+ 
+# Read the tree data
+TREE <- read_tree("tree.nwk")
+ 
+# Print cleaned taxonomy
+print(taxonomy)
+print(tax.clean)
+
+# merge the data
+ps <- phyloseq(OTU, TAX, SAMPLE,TREE)
+
+```
+```{r}
+#check taxa names in OTU table
+otu_taxa_names <- rownames(otu)
+otu_taxa_names
+```
+
+```{r}
+#check taxa names in taxonomy table
+taxonomy_taxa_names <- rownames(taxonomy)
+taxonomy_taxa_names
+
+```
+
+```{r}
+#compare taxa names 
+setdiff(otu_taxa_names, taxonomy_taxa_names)
+setdiff(taxonomy_taxa_names, otu_taxa_names)
+```
+```{r}
+# Check taxa names in OTU table
+otu_taxa_names <- rownames(otu)
+ 
+# Check taxa names in taxonomy table
+taxonomy_taxa_names <- rownames(taxonomy)
+ 
+# Get common taxa names
+common_taxa_names <- intersect(otu_taxa_names, taxonomy_taxa_names)
+ 
+# Subset OTU table and taxonomy table to common taxa names
+otu_common <- otu[common_taxa_names, , drop = FALSE]
+taxonomy_common <- taxonomy[common_taxa_names, , drop = FALSE]
+ 
+common_taxa_names
+
+# Now create phyloseq object
+OTU <- otu_table(otu_common, taxa_are_rows = TRUE)
+TAX <- tax_table(taxonomy_common)
+SAMPLE <- sample_data(metadata)
+
+# Read the tree data
+TREE <- read_tree("tree.nwk")
+
+physeq <- phyloseq(OTU,TAX,TREE,SAMPLE)
+ 
+# Check if taxa names match
+taxa_names(physeq)
+```
+
+
+
+
+
+

@@ -1,0 +1,418 @@
+---
+title: "JvSFN 6 Proteomics analysis"
+author: "Raymond Otoo"
+date: "2024-04-18"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir = "/Users/raymondotoo/Library/CloudStorage/Box-Box/Lab Research Studies/Raymond/Jv SFN 6/proteomics_results/protein_analysis/02_differential_abundance/")
+```
+
+## R Markdown
+
+#Ref
+#https://microsud.github.io/Bacterial-Proteomics-in-R/tutorial_main_doc.html
+
+```{r}
+# Install BiocManager if not already installed
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+# Use BiocManager to install Bioconductor packages
+BiocManager::install("DEP")
+BiocManager::install("dplyr")
+BiocManager::install("proteus")
+BiocManager::install("SummarizedExperiment")
+
+```
+
+
+```{r}
+library("DEP") # for Proteomics analysis
+library("dplyr") # for data manipulation
+library("pheatmap")
+library("SummarizedExperiment")
+```
+
+
+```{r}
+jvsfn_6 <- read.csv("combined_results.csv")
+
+colnames(jvsfn_6)
+
+jvsfn_6$UniProtIds <- sub(".*=", "", jvsfn_6$UniProtIds)
+jvsfn_6$UniProtIds <- sub("\"", "", jvsfn_6$UniProtIds)
+jvsfn_6$UniProtIds <- sub("\"$", "", jvsfn_6$UniProtIds)
+
+head(jvsfn_6)
+```
+
+```{r}
+data_unique <- make_unique(jvsfn_6, "uniprot_id", "uniprot_id", delim =";")
+```
+
+```{r}
+jvsfn_6$name %>% duplicated() %>% any()
+```
+
+```{r}
+jvsfn_6
+```
+
+```{r}
+dim(jvsfn_6)
+```
+
+
+```{r}
+label <- c("s400L_HIPP", "s401L_HIPP", "s402L_HIPP", "s403L_HIPP", "s404L_HIPP", 
+           "s800L_HIPP", "s801L_HIPP", "s802L_HIPP", "s803L_HIPP", "s804L_HIPP", 
+           "s200L_HIPP", "s201L_HIPP", "s202L_HIPP", "s203L_HIPP", "s204L_HIPP", 
+           "s600L_HIPP", "s601L_HIPP", "s602L_HIPP", "s603L_HIPP", "s604L_HIPP")
+
+condition <- c("SFN+10Gy", "SFN+10Gy", "SFN+10Gy", "SFN+10Gy", "SFN+10Gy", 
+               "SFN+0Gy", "SFN+0Gy", "SFN+0Gy", "SFN+0Gy", "SFN+0Gy", 
+               "Saline+10Gy", "Saline+10Gy", "Saline+10Gy", "Saline+10Gy", "Saline+10Gy", 
+               "Saline+0Gy", "Saline+0Gy", "Saline+0Gy", "Saline+0Gy", "Saline+0Gy")
+
+
+replicate <- rep(1:5,4)
+
+label <- as.character(label)
+condition <- as.character(condition)
+
+
+#create the dataframe
+experimental_design <- data.frame(label=label, condition=condition, replicate = as.double(replicate))
+experimental_design
+
+typeof(experimental_design)
+```
+```{r}
+exp_columns <- grep("_HIPP$", colnames(data_unique)) # get Hyp column numbers
+
+#used with experimental design
+data_se<- make_se(data_unique, exp_columns, experimental_design)
+```
+
+
+```{r}
+exp_columns
+```
+
+```{r}
+data_se
+```
+## Mean vs Sd plot
+```{r}
+meanSdPlot(data_se)
+```
+
+```{r}
+plot_frequency(data_se) # first check the number of proteins not quantified in any of the samples
+```
+```{r}
+data_filt <- filter_missval(data_se, thr = 0)
+plot_frequency(data_filt)
+```
+```{r}
+plot_numbers(data_filt)
+```
+## Protein coverage in all samples.
+```{r}
+p <- plot_coverage(data_filt) + scale_fill_brewer(palette = "Paired")
+p <- p+ geom_text(aes(label=Freq), vjust=1.6, color="white")
+p
+```
+
+
+```{r}
+hist(2^assay(data_se)[,"SFN.10Gy_1"],n=1000) # on orginal scale using onesample
+hist(assay(data_se)[,"SFN.10Gy_1"],n=1000) # log2 scale
+plot(density(assay(data_se)[,"SFN.10Gy_1"],na.rm=TRUE))
+```
+## Normalization 
+```{r}
+#Apply VSN normalisation
+data_norm <- normalize_vsn(data_filt) # VSN is performed on original scale
+
+#Apply median normalisation
+data_norm_med <- data_filt
+#assay(data_norm_med)<-proteus::normalizeMedian(assay(data_filt))
+
+#Apply quantile normalisation
+data_norm_quant <- data_filt
+assay(data_norm_quant)<-limma::normalizeQuantiles(assay(data_filt))
+```
+
+```{r}
+mds_plot <- meanSdPlot(data_norm) 
+```
+## Compare raw and normalized data
+```{r}
+# specify colors
+sub_cols <- c(Saline.0Gy= "#e63946", Saline.10Gy="green", SFN.0Gy="blue", SFN.10Gy="purple")
+p.norm <- plot_normalization(data_filt, data_norm)
+p.norm + scale_fill_manual(values = sub_cols)
+
+```
+
+
+```{r}
+plot_missval(data_filt)
+plot_detect(data_filt) # make df such that average of a gene in all conditions in one column and 
+```
+```{r}
+data_imp <- impute(data_filt, fun = "MinProb", q = 0.01)
+```
+
+
+## # Plot intensity distributions before and after imputation
+```{r}
+plot_imputation(data_norm, data_imp)
+```
+
+# Global visualisation - 
+## PCA
+### Use all detected proteins and do a PCA for visualizing if there is clustering of replicates and conditions.
+```{r}
+library("ggplot2")
+
+sub_cols <- c(Saline.0Gy= "#e63946", Saline.10Gy="green", SFN.0Gy="blue", SFN.10Gy="purple")
+
+p.pca <- plot_pca(data_imp, x = 1, y = 2, 
+                  n = nrow(data_imp@assays), # use all detected proteins
+                  point_size = 5,
+                  indicate = "condition",
+                  label=F) + 
+  ggtitle("JvSFN_6") + 
+  scale_color_manual("Treatments", values = sub_cols)
+p.pca
+```
+
+## Differential enrichment analysis
+## Based on linear models and empherical Bayes statistics. Uses limma and fdrtools
+```{r}
+data_diff<- test_diff(data_imp,type = "all")
+```
+
+## Identify/Mark significant proteins
+```{r}
+dep <- add_rejections(data_diff, alpha = 0.05, lfc = log2(1.5))
+dep
+```
+##Plot top proteins
+```{r}
+#make a volcano plot of the selected contrast
+plot_volcano(dep, contrast = "SFN.10Gy_vs_Saline.10Gy", label_size = 2, add_names= TRUE)
+
+#plot a number of selcted proteins in on plot
+plot_single(dep, proteins = c("A0A1W2P872","O35609", "O35633", "O35685","Q2TPA8","O35691"), type = "centered")
+
+#plot only one protein
+plot_single(dep, proteins = "A1L3P4", type = "centered")
+```
+```{r}
+cor_matrix <- plot_cor(data_imp, 
+                       significant = F, 
+                       lower = 0, 
+                       upper = 1, 
+                       pal = "GnBu",
+                       indicate = c("condition", "replicate"), 
+                       plot = F)
+
+cor_matrix
+```
+
+```{r}
+pheatmap(cor_matrix)
+```
+
+```{r}
+dep <- add_rejections(data_diff, alpha = 0.05, lfc = 0.0)
+```
+
+
+```{r}
+#png("jvsfn6_group3.png", width = 10, height = 10, units = 'in', res = 600)
+
+plot_heatmap(dep, 
+             type = "centered", 
+             kmeans = T, 
+             col_limit = 0.3, 
+             show_row_names = T,
+             column_title = "JvSFN6 Heatmap",
+             row_font_size=8,
+             indicate = c("condition", "replicate"), 
+             clustering_distance = "spearman",
+             plot = TRUE)
+
+#dev.off()
+```
+
+
+```{r}
+#plot comparisons 
+p.heat <- plot_heatmap(dep, 
+                       type = "contrast", 
+                       kmeans = F, 
+                       col_limit = 0.3, 
+                       show_row_names = T,
+                       indicate = c("condition", "replicate"), 
+                       show_row_dend= T,
+                       row_dend_side = "right", 
+                       width = 0.5, 
+                       gap = unit(1, "mm"))
+```
+```{r}
+remove_grids <- theme(panel.grid.major = element_blank(), 
+                      panel.grid.minor = element_blank(),
+                      panel.background = element_blank(), 
+                      axis.line = element_line(colour = "black"))
+
+Saline.10Gy_vs_SFN.10Gy <- plot_volcano(dep, 
+                                      contrast = "SFN.10Gy_vs_Saline.10Gy", 
+                                      label_size = 2, 
+                                      add_names = TRUE) + remove_grids 
+
+Saline.10Gy_vs_SFN.10Gy
+```
+### Plot DA proteins
+```{r}
+key_prots <- c("A2AN08","A2ASS6","O35609", "O35633", "O35685", "P51855", "P53811", "P98084","Q2TPA8","O35691")
+
+rep_cols <- c("1"="#ffc49b","2"="#e05780","3"="#adb6c4","4"="green","5"="blue" )
+
+plot_single(dep, 
+            proteins = key_prots, 
+            type = "centered") +  
+  scale_color_manual("Replicate", values = rep_cols)
+```
+## Pathway analysis
+
+```{r}
+data_results <- get_results(dep)
+#write.csv(data_results, "./results/L2_comparison_all.csv")
+# Number of significant proteins
+data_results %>% filter(significant) %>% nrow()
+```
+
+```{r}
+data_results
+```
+
+```{r}
+colnames(data_results)
+```
+
+```{r}
+# Install BiocManager if not already installed
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+# Use BiocManager to install Bioconductor packages
+BiocManager::install("pathview")
+BiocManager::install("enrichplot")
+BiocManager::install("DOSE")
+```
+
+```{r}
+library(clusterProfiler)
+library(pathview)
+library(enrichplot)
+library(DOSE)
+```
+
+
+## Here,demonstrate this using DA proteins between saline 10Gy and SFN 10Gy treatments.
+```{r}
+#SFN.10Gy_vs_Saline.10Gy_significant
+#SFN.10Gy_vs_Saline.10Gy_ratio
+
+saline_sfn <- data_results[, c("name","SFN.10Gy_vs_Saline.10Gy_significant", "SFN.10Gy_vs_Saline.10Gy_ratio", "SFN.10Gy_vs_Saline.10Gy_p.adj")]
+
+foldchanges.1 = saline_sfn$SFN.10Gy_vs_Saline.10Gy_ratio
+names(foldchanges.1) = saline_sfn$name
+
+# we use a threshold of -1.2 or + 1.2
+gene <- names(foldchanges.1)[abs(foldchanges.1) > 0.00]
+gene
+```
+
+
+## KEGG enrichment
+```{r}
+#Identify KEGG pathways that are enriched.
+saline_sfn_kegg <- enrichKEGG(gene,
+                           organism = 'mouse',
+                           keyType = "uniprot",
+                           pvalueCutoff = 0.05)
+
+
+#plot results
+barplot(saline_sfn_kegg,
+        drop=TRUE,
+        showCategory = 10,
+        title = "KEGG Enrichment Pathways",
+        font.size = 8)
+
+saline_sfn_kegg
+
+saline_sfn_kegg[0:100]
+```
+
+
+
+```{r}
+# Install BiocManager if not already installed
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+# Use BiocManager to install Bioconductor packages
+BiocManager::install("org.Mm.eg.db")
+BiocManager::install("GO.db")
+BiocManager::install("topGO")
+BiocManager::install("KEGG.db")
+BiocManager::install("ReactomePA")
+
+```
+
+
+
+```{r}
+enrichplot::cnetplot(saline_sfn_kegg,categorySize = "pvalue", 
+                     foldChange = foldchanges.1, colorEdge= TRUE)
+```
+
+
+
+```{r}
+mkk <- enrichMKEGG(gene = gene,
+                   organism = 'mmu',
+                   pvalueCutoff = 0.05,
+                   minGSSize = 5,
+                   keyType = "uniprot",
+                   qvalueCutoff = 0.05)
+
+barplot(mkk,
+        drop=TRUE,
+        showCategory = 10,
+        title = "KEGG Enrichment Pathways",
+        font.size = 8)
+
+head(mkk)
+mkk[0:100]
+```
+
+
+```{r}
+library(pathview)
+pathview(saline_sfn_kegg,
+         pathway.id = "mmu05208",
+         species = "mouse",
+         plot.col.key= TRUE,
+         res=600)
+
+```
+

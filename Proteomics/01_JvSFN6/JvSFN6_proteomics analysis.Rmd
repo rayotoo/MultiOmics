@@ -35,7 +35,10 @@ library("pheatmap")
 library("SummarizedExperiment")
 ```
 
+## 01_Data Import and Cleaning:
 
+# - Reads data from a CSV file (combined_results.csv) containing protein information and expression values.
+# - Cleans column names and extracts unique protein IDs.
 ```{r}
 jvsfn_6 <- read.csv("combined_results.csv")
 
@@ -65,6 +68,10 @@ dim(jvsfn_6)
 ```
 
 
+## 02_Data Wrangling and Experimental Design:
+
+# - Creates a data frame (experimental_design) containing sample labels, conditions, and replicates.
+# - Defines expression columns based on sample names.
 ```{r}
 label <- c("s400L_HIPP", "s401L_HIPP", "s402L_HIPP", "s403L_HIPP", "s404L_HIPP", 
            "s800L_HIPP", "s801L_HIPP", "s802L_HIPP", "s803L_HIPP", "s804L_HIPP", 
@@ -104,7 +111,13 @@ exp_columns
 ```{r}
 data_se
 ```
-## Mean vs Sd plot
+
+## 03_Data Exploration:
+
+# - Generates a mean-standard deviation plot (meanSdPlot) to visualize data distribution across samples.
+# - Analyzes the number of proteins quantified in each sample with plot_frequency before and after filtering missing values (filter_missval).
+# - Explores protein coverage across samples with plot_coverage.
+# - Creates histograms to visualize the distribution of expression values.
 ```{r}
 meanSdPlot(data_se)
 ```
@@ -132,7 +145,12 @@ hist(2^assay(data_se)[,"SFN.10Gy_1"],n=1000) # on orginal scale using onesample
 hist(assay(data_se)[,"SFN.10Gy_1"],n=1000) # log2 scale
 plot(density(assay(data_se)[,"SFN.10Gy_1"],na.rm=TRUE))
 ```
-## Normalization 
+
+
+## 04_Normalization:
+
+# - Applies VSN normalization (normalize_vsn) for variance stabilization.
+# - Optional: Includes code for median (normalize_median) and quantile normalization (normalizeQuantiles) but these are not applied by default.
 ```{r}
 #Apply VSN normalisation
 data_norm <- normalize_vsn(data_filt) # VSN is performed on original scale
@@ -149,7 +167,9 @@ assay(data_norm_quant)<-limma::normalizeQuantiles(assay(data_filt))
 ```{r}
 mds_plot <- meanSdPlot(data_norm) 
 ```
-## Compare raw and normalized data
+
+## Comparison of Raw and Normalized Data:
+# - Generates a plot (plot_normalization) to compare the distribution of expression values before and after normalization.
 ```{r}
 # specify colors
 sub_cols <- c(Saline.0Gy= "#e63946", Saline.10Gy="green", SFN.0Gy="blue", SFN.10Gy="purple")
@@ -163,18 +183,24 @@ p.norm + scale_fill_manual(values = sub_cols)
 plot_missval(data_filt)
 plot_detect(data_filt) # make df such that average of a gene in all conditions in one column and 
 ```
+
+
+## 05_Missing Value Imputation:
+#- Analyzes missing values with plot_missval and identifies undetected proteins with plot_detect.
+#- Imputes missing values using the minimum probability method (impute).
 ```{r}
 data_imp <- impute(data_filt, fun = "MinProb", q = 0.01)
 ```
 
 
+## 06_Visualization and Quality Control:
+#- Compares the distribution of expression intensities before and after imputation with plot_imputation.
 ## # Plot intensity distributions before and after imputation
 ```{r}
 plot_imputation(data_norm, data_imp)
 ```
 
-# Global visualisation - 
-## PCA
+## 07_Performs Principal Component Analysis (PCA) with plot_pca to visualize sample clustering based on protein expression.
 ### Use all detected proteins and do a PCA for visualizing if there is clustering of replicates and conditions.
 ```{r}
 library("ggplot2")
@@ -191,8 +217,10 @@ p.pca <- plot_pca(data_imp, x = 1, y = 2,
 p.pca
 ```
 
-## Differential enrichment analysis
-## Based on linear models and empherical Bayes statistics. Uses limma and fdrtools
+
+## 08_Differential Enrichment Analysis:
+#- Conducts differential analysis (test_diff) using linear models and empirical Bayes statistics and fdrtools.
+#- Identifies significantly differentially expressed (DE) proteins based on a fold change threshold and adjusted p-value (add_rejections).
 ```{r}
 data_diff<- test_diff(data_imp,type = "all")
 ```
@@ -202,6 +230,7 @@ data_diff<- test_diff(data_imp,type = "all")
 dep <- add_rejections(data_diff, alpha = 0.05, lfc = log2(1.5))
 dep
 ```
+
 ##Plot top proteins
 ```{r}
 #make a volcano plot of the selected contrast
@@ -225,6 +254,9 @@ cor_matrix <- plot_cor(data_imp,
 cor_matrix
 ```
 
+
+## 09_Correlation Analysis:
+#- Calculates protein-protein correlations (plot_cor) and generates a heatmap with pheatmap for visualization.
 ```{r}
 pheatmap(cor_matrix)
 ```
@@ -233,6 +265,10 @@ pheatmap(cor_matrix)
 dep <- add_rejections(data_diff, alpha = 0.05, lfc = 0.0)
 ```
 
+
+## Heatmap of Expression Data:
+# - Creates a heatmap with hierarchical clustering (plot_heatmap) to visualize protein expression patterns across samples and replicates.
+# Allows customization of clustering methods, color limits, and display options.
 
 ```{r}
 #png("jvsfn6_group3.png", width = 10, height = 10, units = 'in', res = 600)
@@ -278,6 +314,7 @@ Saline.10Gy_vs_SFN.10Gy <- plot_volcano(dep,
 
 Saline.10Gy_vs_SFN.10Gy
 ```
+
 ### Plot DA proteins
 ```{r}
 key_prots <- c("A2AN08","A2ASS6","O35609", "O35633", "O35685", "P51855", "P53811", "P98084","Q2TPA8","O35691")
@@ -289,7 +326,14 @@ plot_single(dep,
             type = "centered") +  
   scale_color_manual("Replicate", values = rep_cols)
 ```
-## Pathway analysis
+
+
+
+
+## 10_Pathway Enrichment Analysis:
+# - Extracts information about significantly DE proteins (get_results).
+# - Performs KEGG pathway enrichment analysis with enrichKEGG and visualizes enriched pathways using barplots (barplot) and network plots (cnetplot).
+# - Optionally performs additional enrichment analysis methods like MKEGG (enrichMKEGG) and visualizes the
 
 ```{r}
 data_results <- get_results(dep)

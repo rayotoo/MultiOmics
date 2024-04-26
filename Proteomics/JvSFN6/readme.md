@@ -1,4 +1,3 @@
-#Readme goes here
 # Workflow Overview
 
 ## Data Import and Cleaning:

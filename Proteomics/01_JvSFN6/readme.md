@@ -1,4 +1,23 @@
-#Readme goes here
+# RNA-Seq Proteomics Analysis Workflow
+
+- This repository contains scripts for analyzing RNA-seq proteomics data using the DEP package in R. The workflow includes data import, normalization, differential expression analysis, and pathway enrichment analysis.
+
+## Requirements
+
+- R (tested on version 4.1.0)
+
+## Installation
+
+- Before running the code, make sure to install the required R packages. You can install them using the following commands:
+
+```R
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install(c("DEP", "dplyr", "proteus", "SummarizedExperiment"))
+
+```
+
 # Workflow Overview
 
 ## Data Import and Cleaning:

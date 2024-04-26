@@ -10,6 +10,7 @@
 
 - Before running the code, make sure to install the required R packages. You can install them using the following commands:
 
+- For the main proteomics analysis
 ```R
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
@@ -17,6 +18,20 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 BiocManager::install(c("DEP", "dplyr", "proteus", "SummarizedExperiment"))
 
 ```
+
+- For the main proteomics network/pathway analysis
+```R
+# Install BiocManager if not already installed
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+# Use BiocManager to install Bioconductor packages
+BiocManager::install("pathview")
+BiocManager::install("enrichplot")
+BiocManager::install("DOSE")
+
+```
+
 
 # Workflow Overview
 

@@ -19,7 +19,7 @@ BiocManager::install(c("DEP", "dplyr", "proteus", "SummarizedExperiment"))
 
 ```
 
-- For the main proteomics network/pathway analysis
+- For the proteomics network/pathway analysis
 ```R
 # Install BiocManager if not already installed
 if (!requireNamespace("BiocManager", quietly = TRUE))

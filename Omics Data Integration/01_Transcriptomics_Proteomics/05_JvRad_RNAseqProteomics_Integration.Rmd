@@ -6,7 +6,7 @@ output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "/Users/raymondotoo/Library/CloudStorage/OneDrive-UniversityofArkansasforMedicalSciences/MultiOmics/Omics Data Integration/01_Transcriptomics_Proteomics/")
 ```
 
 ## R Markdown
@@ -32,21 +32,30 @@ knitr::opts_chunk$set(echo = TRUE)
 #BiocManager::install("mixOmics")
 
 ```
+
+```{r}
+#BiocManager::install()
+```
+
+
 ## 1. Load the mixOmics package
 ```{r}
 library(mixOmics)
 ```
 
-## set working directory
+#
 ```{r}
-setwd('E:/new_workflow/integration/')
+#setwd('')
 ```
 
 
 ## Read in the finalCounts(table with the genes and counts) for RNA and Proteomics data of proteins and their scores
 ## 2. Preprocessing of RNAseq count data 
 ```{r}
-countdata <- read.table("E:/new_workflow/results/5_final_counts/normalized_counts_significant.txt", header = TRUE, sep = '\t')
+#set working directory
+setwd("DEG_outputs/")
+
+countdata <- read.table("normalized_counts_significant.txt", header = TRUE, sep = '\t')
 
 #remove the extra column names leaving only the sample names and gene Ids
 countdata <- countdata[,!colnames(countdata) %in% c("Chr","Start","End","Strand","Length")]
@@ -64,7 +73,7 @@ head(countdata_t)
 #It was then saved as a .csv file and renamed to this.
 
 #read the normalized proteomics data
-proteomics_combined <- read.csv("E:/new_workflow/integration/TMT_protein_results.csv", header = TRUE)
+proteomics_combined <- read.csv("Proteomics_data/TMT_protein_results.csv", header = TRUE)
 
 
 #remove the extra column names leaving only the sample names and gene Ids
@@ -128,6 +137,7 @@ countdata_t
 proteomics_new
 countdata_t
 ```
+
 ```{r}
 #colnames(proteomics_t)
 rownames(proteomics_new)
@@ -160,12 +170,14 @@ library(data.table)
 library(dplyr)
 
 # Now use bind_rows
-combined_omics <- bind_cols(countdata_t, proteomics_ordered)
-combined_omics
+#combined_omics <- bind_cols(countdata_t, proteomics_ordered)
+#combined_omics
 ```
+
 ```{r}
-rownames(combined_omics)
+#rownames(combined_omics)
 ```
+
 ```{r}
 #create a list for the reponse variable. Which is the treatment groups
 response_list <- c("sham","sham","sham","sham","IR","IR","IR","IR","IR")
@@ -211,8 +223,6 @@ rownames(rna_matrix)
 
 
 ```{r}
-
-
 # Check if there are any missing values in the entire dataframe
 any_missing <- any(is.na(proteomics_matrix) | is.nan(proteomics_matrix))
 
@@ -298,6 +308,8 @@ diag(design)<- 0
 design
                  
 ```
+
+
 ```{r}
 #Perform Regression analysis with PLS to further understand the correlation between data sets.
 #calculate the cross-correlations between components associated to each data set.

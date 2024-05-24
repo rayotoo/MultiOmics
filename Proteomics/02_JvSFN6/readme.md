@@ -148,5 +148,5 @@ BiocManager::install("DOSE")
 ## 7. **Top proteins plot**
 ![TopProteins](top_proteins_plot.png)
 
-## 7. **Correlation plot**
+## 8. **Correlation plot**
 ![CorrelationPlot](corr_plot.png)

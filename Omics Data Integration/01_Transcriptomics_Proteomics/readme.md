@@ -35,8 +35,14 @@ By integrating RNA-Seq and proteomics data, this analysis aims to provide a more
 Both files need to be preprocessed within the script to ensure compatibility for integration. This may involve handling missing values, normalization (if necessary), and potentially removing uninformative features. 
 
 ## Visualization
-## CircosPlot 
+## VarPlot 
+![VarPlot](var_plot.png)
 
+- Var plot showing the correlation between the features. 
+
+
+## Visualization
+## CircosPlot 
 ![CircosPlot](circos_plot.png)
 
 - Circular plot visualizing the relationships between mRNA and protein data, aiding in the exploration of potential co-regulations or correlations.

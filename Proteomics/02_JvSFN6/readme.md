@@ -129,3 +129,18 @@ BiocManager::install("DOSE")
 ![Normalization](normalization_raw_vs_norm.png)
 
 - Normalization plot.
+
+## 4. **Missing Values**
+![MissingValues](missingValues.png)
+
+- Missing values.
+
+## 5. **Imputed Missing Values**
+![ImputedMissingValues](imputedMissingValues.png)
+
+- Imputed Missing values..
+
+## 6. **PCA plot**
+![PCAPlot](pca_plot.png)
+
+- PCA plot..

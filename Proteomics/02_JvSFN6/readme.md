@@ -115,3 +115,7 @@ BiocManager::install("DOSE")
 
 - Barplot of the number of identified proteins per sample.
 
+## 2. **Protein_coverage.png**
+![ProteinCoverage](protein_coverage.png)
+
+- Barplot of the protein coverage in all samples.

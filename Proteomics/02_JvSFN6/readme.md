@@ -144,3 +144,6 @@ BiocManager::install("DOSE")
 ![PCAPlot](pca_plot.png)
 
 - PCA plot..
+
+## 7. **Top proteins plot**
+![TopProteins](top_proteins_plot.png)

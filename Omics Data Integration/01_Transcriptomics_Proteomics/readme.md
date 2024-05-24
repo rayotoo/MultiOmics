@@ -51,6 +51,11 @@ Both files need to be preprocessed within the script to ensure compatibility for
 
 - Circular plot visualizing the relationships between mRNA and protein data, aiding in the exploration of potential co-regulations or correlations.
 
+## PlotDiablo
+![PlotDiablo](plot_diablo.png)
+
+- Plot Diablo plot
+
 ### jvrad_cim_heatmap.png
 ## CIM Heatmap
 ![cim Heatmap](cim_heatmap.png)

@@ -471,12 +471,23 @@ diablo_jvrad_final$design
 selectVar(diablo_jvrad_final,block='mRNA', comp = 1)
 ```
 
-```{r}
-plotDiablo(diablo_jvrad_final, ncomp = 1)
+```{r, fig.width=7,fig.height=7,dpi=300}
+ png(filename = "/Users/raymondotoo/Library/CloudStorage/OneDrive-UniversityofArkansasforMedicalSciences/MultiOmics/Omics Data Integration/01_Transcriptomics_Proteomics/plot_diablo.png",width = 10, height = 6, units = "in", res = 600)
+
+plot_diablo <- plotDiablo(diablo_jvrad_final, ncomp = 1)
+plot_diablo
+
+dev.off()
 ```
-```{r}
-plotIndiv(diablo_jvrad_final, ind.names = FALSE,legend = TRUE,
+```{r, fig.width=7,fig.height=7,dpi=300}
+ png(filename = "/Users/raymondotoo/Library/CloudStorage/OneDrive-UniversityofArkansasforMedicalSciences/MultiOmics/Omics Data Integration/01_Transcriptomics_Proteomics/plot_ind.png",width = 10, height = 6, units = "in", res = 600)
+
+plot_ind <- plotIndiv(diablo_jvrad_final, ind.names = FALSE,legend = TRUE,
           title = 'JvRad, DIABLO comp 1 - 2')
+
+plot_ind
+
+dev.off()
 ```
 
 

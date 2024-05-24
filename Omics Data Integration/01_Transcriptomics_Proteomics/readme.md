@@ -40,8 +40,12 @@ Both files need to be preprocessed within the script to ensure compatibility for
 
 - Var plot showing the correlation between the features. 
 
+## PlotInd
+![PlotInd](plot_ind.png)
 
-## Visualization
+- PlotInd Plots for mRNA and Proteomics 
+
+
 ## CircosPlot 
 ![CircosPlot](circos_plot.png)
 

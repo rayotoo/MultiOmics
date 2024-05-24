@@ -379,7 +379,7 @@ plotVar(results_1)
 
 
 ```{r}
-list.keepX <- list(mRNA= c(10,5), proteomics=c(10,5))
+list.keepX <- list(mRNA= c(25,25), proteomics=c(25,25))
 list.keepX
 
 results <- block.splsda(X,Y, keepX = list.keepX)

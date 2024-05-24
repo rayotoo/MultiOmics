@@ -16,14 +16,14 @@ knitr::opts_knit$set(root.dir = "/Users/raymondotoo/Library/CloudStorage/Box-Box
 
 ```{r}
 # Install BiocManager if not already installed
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
+#if (!requireNamespace("BiocManager", quietly = TRUE))
+#    install.packages("BiocManager")
 
 # Use BiocManager to install Bioconductor packages
-BiocManager::install("DEP")
-BiocManager::install("dplyr")
-BiocManager::install("proteus")
-BiocManager::install("SummarizedExperiment")
+#BiocManager::install("DEP")
+#BiocManager::install("dplyr")
+#BiocManager::install("proteus")
+#BiocManager::install("SummarizedExperiment")
 
 ```
 
@@ -129,14 +129,22 @@ plot_frequency(data_se) # first check the number of proteins not quantified in a
 data_filt <- filter_missval(data_se, thr = 0)
 plot_frequency(data_filt)
 ```
-```{r}
-plot_numbers(data_filt)
+```{r, fig.width=200,fig.height=10,dpi=600}
+png(filename = "/Users/raymondotoo/Library/CloudStorage/OneDrive-UniversityofArkansasforMedicalSciences/MultiOmics/Proteomics/02_JvSFN6/plot_num.png",width = 12, height = 10, units = "in", res = 600)
+
+plotNum <- plot_numbers(data_filt)
+plotNum
+
+dev.off()
 ```
 ## Protein coverage in all samples.
-```{r}
+```{r, fig.width=200,fig.height=10,dpi=600}
+png(filename = "/Users/raymondotoo/Library/CloudStorage/OneDrive-UniversityofArkansasforMedicalSciences/MultiOmics/Proteomics/02_JvSFN6/protein_coverage.png",width = 12, height = 10, units = "in", res = 600)
 p <- plot_coverage(data_filt) + scale_fill_brewer(palette = "Paired")
 p <- p+ geom_text(aes(label=Freq), vjust=1.6, color="white")
 p
+
+dev.off()
 ```
 
 
@@ -164,24 +172,36 @@ data_norm_quant <- data_filt
 assay(data_norm_quant)<-limma::normalizeQuantiles(assay(data_filt))
 ```
 
-```{r}
+```{r, fig.width=200,fig.height=10,dpi=600}
+png(filename = "/Users/raymondotoo/Library/CloudStorage/OneDrive-UniversityofArkansasforMedicalSciences/MultiOmics/Proteomics/02_JvSFN6/mds_plot.png",width = 12, height = 10, units = "in", res = 600)
+
 mds_plot <- meanSdPlot(data_norm) 
+mds_plot
+dev.off()
 ```
 
 ## Comparison of Raw and Normalized Data:
 # - Generates a plot (plot_normalization) to compare the distribution of expression values before and after normalization.
-```{r}
+```{r, fig.width=200,fig.height=10,dpi=600}
+
+png(filename = "/Users/raymondotoo/Library/CloudStorage/OneDrive-UniversityofArkansasforMedicalSciences/MultiOmics/Proteomics/02_JvSFN6/normalization_raw_vs_norm.png",width = 12, height = 10, units = "in", res = 600)
+
 # specify colors
 sub_cols <- c(Saline.0Gy= "#e63946", Saline.10Gy="green", SFN.0Gy="blue", SFN.10Gy="purple")
 p.norm <- plot_normalization(data_filt, data_norm)
 p.norm + scale_fill_manual(values = sub_cols)
 
+dev.off()
 ```
 
 
-```{r}
+```{r, fig.width=200,fig.height=10,dpi=600}
+
+png(filename = "/Users/raymondotoo/Library/CloudStorage/OneDrive-UniversityofArkansasforMedicalSciences/MultiOmics/Proteomics/02_JvSFN6/missingValues.png",width = 12, height = 10, units = "in", res = 600)
 plot_missval(data_filt)
 plot_detect(data_filt) # make df such that average of a gene in all conditions in one column and 
+
+dev.off()
 ```
 
 
@@ -196,13 +216,22 @@ data_imp <- impute(data_filt, fun = "MinProb", q = 0.01)
 ## 06_Visualization and Quality Control:
 #- Compares the distribution of expression intensities before and after imputation with plot_imputation.
 ## # Plot intensity distributions before and after imputation
-```{r}
+```{r, fig.width=200,fig.height=10,dpi=600}
+
+png(filename = "/Users/raymondotoo/Library/CloudStorage/OneDrive-UniversityofArkansasforMedicalSciences/MultiOmics/Proteomics/02_JvSFN6/imputedMissingValues.png",width = 12, height = 10, units = "in", res = 600)
+
 plot_imputation(data_norm, data_imp)
+
+dev.off()
 ```
 
 ## 07_Performs Principal Component Analysis (PCA) with plot_pca to visualize sample clustering based on protein expression.
 ### Use all detected proteins and do a PCA for visualizing if there is clustering of replicates and conditions.
-```{r}
+```{r, fig.width=200,fig.height=10,dpi=600}
+
+png(filename = "/Users/raymondotoo/Library/CloudStorage/OneDrive-UniversityofArkansasforMedicalSciences/MultiOmics/Proteomics/02_JvSFN6/pca_plot.png",width = 12, height = 10, units = "in", res = 600)
+
+
 library("ggplot2")
 
 sub_cols <- c(Saline.0Gy= "#e63946", Saline.10Gy="green", SFN.0Gy="blue", SFN.10Gy="purple")
@@ -215,6 +244,8 @@ p.pca <- plot_pca(data_imp, x = 1, y = 2,
   ggtitle("JvSFN_6") + 
   scale_color_manual("Treatments", values = sub_cols)
 p.pca
+
+dev.off()
 ```
 
 
@@ -232,16 +263,25 @@ dep
 ```
 
 ##Plot top proteins
-```{r}
+```{r, fig.width=200,fig.height=10,dpi=600}
+
+png(filename = "/Users/raymondotoo/Library/CloudStorage/OneDrive-UniversityofArkansasforMedicalSciences/MultiOmics/Proteomics/02_JvSFN6/top_proteins_plot.png",width = 12, height = 10, units = "in", res = 600)
+
 #make a volcano plot of the selected contrast
-plot_volcano(dep, contrast = "SFN.10Gy_vs_Saline.10Gy", label_size = 2, add_names= TRUE)
+plot_vol<-plot_volcano(dep, contrast = "SFN.10Gy_vs_Saline.10Gy", label_size = 2, add_names= TRUE)
 
 #plot a number of selcted proteins in on plot
-plot_single(dep, proteins = c("A0A1W2P872","O35609", "O35633", "O35685","Q2TPA8","O35691"), type = "centered")
+plot_mult<- plot_single(dep, proteins = c("A0A1W2P872","O35609", "O35633", "O35685","Q2TPA8","O35691"), type = "centered")
 
 #plot only one protein
-plot_single(dep, proteins = "A1L3P4", type = "centered")
+plot_sing<-plot_single(dep, proteins = "A1L3P4", type = "centered")
+
+plot_mult
+
+dev.off()
 ```
+
+
 ```{r}
 cor_matrix <- plot_cor(data_imp, 
                        significant = F, 
@@ -257,8 +297,13 @@ cor_matrix
 
 ## 09_Correlation Analysis:
 #- Calculates protein-protein correlations (plot_cor) and generates a heatmap with pheatmap for visualization.
-```{r}
+```{r, fig.width=200,fig.height=10,dpi=600}
+
+png(filename = "/Users/raymondotoo/Library/CloudStorage/OneDrive-UniversityofArkansasforMedicalSciences/MultiOmics/Proteomics/02_JvSFN6/corr_plot.png",width = 12, height = 10, units = "in", res = 600)
+
 pheatmap(cor_matrix)
+
+dev.off()
 ```
 
 ```{r}
@@ -270,8 +315,9 @@ dep <- add_rejections(data_diff, alpha = 0.05, lfc = 0.0)
 # - Creates a heatmap with hierarchical clustering (plot_heatmap) to visualize protein expression patterns across samples and replicates.
 # Allows customization of clustering methods, color limits, and display options.
 
-```{r}
-#png("jvsfn6_group3.png", width = 10, height = 10, units = 'in', res = 600)
+```{r, fig.width=200,fig.height=10,dpi=600}
+
+png(filename = "/Users/raymondotoo/Library/CloudStorage/OneDrive-UniversityofArkansasforMedicalSciences/MultiOmics/Proteomics/02_JvSFN6/heatmap.png",width = 12, height = 10, units = "in", res = 600)
 
 plot_heatmap(dep, 
              type = "centered", 
@@ -284,7 +330,7 @@ plot_heatmap(dep,
              clustering_distance = "spearman",
              plot = TRUE)
 
-#dev.off()
+dev.off()
 ```
 
 
@@ -301,7 +347,11 @@ p.heat <- plot_heatmap(dep,
                        width = 0.5, 
                        gap = unit(1, "mm"))
 ```
-```{r}
+```{r, fig.width=200,fig.height=10,dpi=600}
+
+png(filename = "/Users/raymondotoo/Library/CloudStorage/OneDrive-UniversityofArkansasforMedicalSciences/MultiOmics/Proteomics/02_JvSFN6/volcanoPlot.png",width = 12, height = 10, units = "in", res = 600)
+
+
 remove_grids <- theme(panel.grid.major = element_blank(), 
                       panel.grid.minor = element_blank(),
                       panel.background = element_blank(), 
@@ -313,6 +363,9 @@ Saline.10Gy_vs_SFN.10Gy <- plot_volcano(dep,
                                       add_names = TRUE) + remove_grids 
 
 Saline.10Gy_vs_SFN.10Gy
+
+dev.off()
+
 ```
 
 ### Plot DA proteins
@@ -352,13 +405,13 @@ colnames(data_results)
 
 ```{r}
 # Install BiocManager if not already installed
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
+#if (!requireNamespace("BiocManager", quietly = TRUE))
+#    install.packages("BiocManager")
 
 # Use BiocManager to install Bioconductor packages
-BiocManager::install("pathview")
-BiocManager::install("enrichplot")
-BiocManager::install("DOSE")
+#BiocManager::install("pathview")
+#BiocManager::install("enrichplot")
+#BiocManager::install("DOSE")
 ```
 
 ```{r}
@@ -386,7 +439,10 @@ gene
 
 
 ## KEGG enrichment
-```{r}
+```{r, fig.width=200,fig.height=10,dpi=600}
+
+png(filename = "/Users/raymondotoo/Library/CloudStorage/OneDrive-UniversityofArkansasforMedicalSciences/MultiOmics/Proteomics/02_JvSFN6/keggEnrichPathway.png",width = 12, height = 10, units = "in", res = 600)
+
 #Identify KEGG pathways that are enriched.
 saline_sfn_kegg <- enrichKEGG(gene,
                            organism = 'mouse',
@@ -404,6 +460,9 @@ barplot(saline_sfn_kegg,
 saline_sfn_kegg
 
 saline_sfn_kegg[0:100]
+
+dev.off()
+
 ```
 
 
@@ -424,14 +483,23 @@ BiocManager::install("ReactomePA")
 
 
 
-```{r}
+```{r, fig.width=200,fig.height=10,dpi=600}
+
+png(filename = "/Users/raymondotoo/Library/CloudStorage/OneDrive-UniversityofArkansasforMedicalSciences/MultiOmics/Proteomics/02_JvSFN6/cnetplot.png",width = 12, height = 10, units = "in", res = 600)
+
 enrichplot::cnetplot(saline_sfn_kegg,categorySize = "pvalue", 
                      foldChange = foldchanges.1, colorEdge= TRUE)
+
+dev.off()
 ```
 
 
 
-```{r}
+```{r, fig.width=200,fig.height=10,dpi=600}
+
+png(filename = "/Users/raymondotoo/Library/CloudStorage/OneDrive-UniversityofArkansasforMedicalSciences/MultiOmics/Proteomics/02_JvSFN6/enrichMKEGG.png",width = 12, height = 10, units = "in", res = 600)
+
+
 mkk <- enrichMKEGG(gene = gene,
                    organism = 'mmu',
                    pvalueCutoff = 0.05,
@@ -447,10 +515,16 @@ barplot(mkk,
 
 head(mkk)
 mkk[0:100]
+
+dev.off()
+
 ```
 
 
 ```{r}
+
+setwd("/Users/raymondotoo/Library/CloudStorage/OneDrive-UniversityofArkansasforMedicalSciences/MultiOmics/Proteomics/02_JvSFN6/")
+
 library(pathview)
 pathview(saline_sfn_kegg,
          pathway.id = "mmu05208",

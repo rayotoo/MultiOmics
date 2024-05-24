@@ -110,7 +110,7 @@ BiocManager::install("DOSE")
 
 ## Visualization
 
-1. ## **Plot Protein Numbers**: 
+## 1. **Plot Protein Numbers**: 
 
 ## Plot Protein Numbers 
 ![PlotNumbers](plot_num.png)

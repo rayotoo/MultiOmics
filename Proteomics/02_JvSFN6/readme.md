@@ -150,3 +150,9 @@ BiocManager::install("DOSE")
 
 ## 8. **Correlation plot**
 ![CorrelationPlot](corr_plot.png)
+
+## 9. **Heatmap**
+![Heatmap](heatmap.png)
+
+## 9. **Volcano Plot**
+![Volcano Plot](volcanoPlot.png)

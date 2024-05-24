@@ -108,3 +108,11 @@ BiocManager::install("DOSE")
 - Performs KEGG pathway enrichment analysis with enrichKEGG and visualizes enriched pathways using barplots (barplot) and network plots (cnetplot).
 - Optionally performs additional enrichment analysis methods like MKEGG (enrichMKEGG) and visualizes the
 
+## Visualization
+
+1. **Plot Protein Numbers**: 
+
+## Plot Protein Numbers 
+![PlotNumbers](plot_num.png)
+
+- Barplot of the number of identified proteins per sample.

@@ -154,5 +154,15 @@ BiocManager::install("DOSE")
 ## 9. **Heatmap**
 ![Heatmap](heatmap.png)
 
-## 9. **Volcano Plot**
+## 10. **Volcano Plot**
 ![Volcano Plot](volcanoPlot.png)
+
+## 11. **Kegg Enriched Pathways**
+![Volcano Plot](keggEnrichPathway.png)
+
+## 12. **CNET plot**
+![cnetPlot](cnetplot.png)
+
+## 13. **EnrichMKEGG Plot**
+![EnrichMEGG Plot](enrichMKEGG.png)
+

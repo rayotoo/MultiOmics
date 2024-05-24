@@ -489,8 +489,11 @@ plotArrow(diablo_jvrad_final, ind.names = FALSE, legend = TRUE,
 ```
 
 ```{r, fig.width=7,fig.height=7,dpi=300}
+
+png(filename = "/Users/raymondotoo/Library/CloudStorage/OneDrive-UniversityofArkansasforMedicalSciences/MultiOmics/Omics Data Integration/01_Transcriptomics_Proteomics/var_plot.png",width = 8, height = 8, units = "in", res = 600)
+
 #variable plots 
-plotVar(diablo_jvrad_final, 
+plot_var<-plotVar(diablo_jvrad_final, 
         var.names = FALSE, 
         style = 'graphics',
         legend = TRUE,
@@ -499,6 +502,10 @@ plotVar(diablo_jvrad_final,
         col = c('darkorchid','brown1'),
         title ='JvRad, DIABLO comp 1 -2'
 )
+
+plot_var
+
+dev.off()
 ```
 
 ```{r, fig.width=7,fig.height=7,dpi=300}

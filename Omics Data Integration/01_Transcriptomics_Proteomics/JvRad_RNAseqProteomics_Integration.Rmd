@@ -511,7 +511,7 @@ plot_var<-plotVar(diablo_jvrad_final,
         pch = c(16,17),
         cex = c(2,2),
         col = c('darkorchid','brown1'),
-        title ='JvRad, DIABLO comp 1 -2'
+        title ='JvRad, mRNA vs Proteomics'
 )
 
 plot_var

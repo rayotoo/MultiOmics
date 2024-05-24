@@ -115,7 +115,17 @@ BiocManager::install("DOSE")
 
 - Barplot of the number of identified proteins per sample.
 
-## 2. **Protein Coverage.png**
+## 2. **Protein Coverage**
 ![ProteinCoverage](protein_coverage.png)
 
 - Barplot of the protein coverage in all samples.
+
+## 3. **Mds Plot**
+![MdsPlot](mds_plot.png)
+
+- Mds plot.
+
+## 3. **Normalization (Raw vs Normalized)**
+![Normalization](normalization_raw_vs_norm.png)
+
+- Normalization plot.

@@ -1,4 +1,4 @@
-Creator "igraph version 0.10.10-81-g857a12506 Thu May 30 12:50:20 2024"
+Creator "igraph version 0.10.10-81-g857a12506 Thu May 30 12:53:06 2024"
 Version 1
 graph
 [
@@ -20,6 +20,20 @@ graph
   node
   [
     id 1
+    name "Hspa5_mRNA"
+    group "mRNA"
+    labelcolor "black"
+    labelfamily "sans"
+    label "Hspa5"
+    color "brown1"
+    shape "circle"
+    labelcex 1
+    size 22.331953125
+    size2 9.27703125
+  ]
+  node
+  [
+    id 2
     name "Cenpb_mRNA"
     group "mRNA"
     labelcolor "black"
@@ -33,7 +47,7 @@ graph
   ]
   node
   [
-    id 2
+    id 3
     name "Rps21_mRNA"
     group "mRNA"
     labelcolor "black"
@@ -47,7 +61,7 @@ graph
   ]
   node
   [
-    id 3
+    id 4
     name "Rpl11_mRNA"
     group "mRNA"
     labelcolor "black"
@@ -61,21 +75,49 @@ graph
   ]
   node
   [
-    id 4
-    name "Rpl9_mRNA"
+    id 5
+    name "Ywhah_mRNA"
     group "mRNA"
     labelcolor "black"
     labelfamily "sans"
-    label "Rpl9"
+    label "Ywhah"
     color "brown1"
     shape "circle"
     labelcex 1
-    size 16.927734375
+    size 23.4140625
     size2 9.27703125
   ]
   node
   [
-    id 5
+    id 6
+    name "Hspa8_mRNA"
+    group "mRNA"
+    labelcolor "black"
+    labelfamily "sans"
+    label "Hspa8"
+    color "brown1"
+    shape "circle"
+    labelcex 1
+    size 22.331953125
+    size2 9.27703125
+  ]
+  node
+  [
+    id 7
+    name "Pcbp4_mRNA"
+    group "mRNA"
+    labelcolor "black"
+    labelfamily "sans"
+    label "Pcbp4"
+    color "brown1"
+    shape "circle"
+    labelcex 1
+    size 21.9744140625
+    size2 9.27703125
+  ]
+  node
+  [
+    id 8
     name "Rps29_mRNA"
     group "mRNA"
     labelcolor "black"
@@ -89,7 +131,21 @@ graph
   ]
   node
   [
-    id 6
+    id 9
+    name "Ttc3_mRNA"
+    group "mRNA"
+    labelcolor "black"
+    labelfamily "sans"
+    label "Ttc3"
+    color "brown1"
+    shape "circle"
+    labelcex 1
+    size 16.2031640625
+    size2 9.27703125
+  ]
+  node
+  [
+    id 10
     name "Rn18s-rs5_mRNA"
     group "mRNA"
     labelcolor "black"
@@ -103,21 +159,7 @@ graph
   ]
   node
   [
-    id 7
-    name "Rpl36_mRNA"
-    group "mRNA"
-    labelcolor "black"
-    labelfamily "sans"
-    label "Rpl36"
-    color "brown1"
-    shape "circle"
-    labelcex 1
-    size 20.5316015625
-    size2 9.27703125
-  ]
-  node
-  [
-    id 8
+    id 11
     name "Rpl17_mRNA"
     group "mRNA"
     labelcolor "black"
@@ -131,7 +173,7 @@ graph
   ]
   node
   [
-    id 9
+    id 12
     name "Pitpnm1_mRNA"
     group "mRNA"
     labelcolor "black"
@@ -145,35 +187,7 @@ graph
   ]
   node
   [
-    id 10
-    name "E9PY16_proteomics"
-    group "proteomics"
-    labelcolor "black"
-    labelfamily "sans"
-    label "E9PY16"
-    color "lightgreen"
-    shape "circle"
-    labelcex 1
-    size 27.3786328125
-    size2 9.27703125
-  ]
-  node
-  [
-    id 11
-    name "O08992_proteomics"
-    group "proteomics"
-    labelcolor "black"
-    labelfamily "sans"
-    label "O08992"
-    color "lightgreen"
-    shape "circle"
-    labelcex 1
-    size 26.660390625
-    size2 9.27703125
-  ]
-  node
-  [
-    id 12
+    id 13
     name "O55100_proteomics"
     group "proteomics"
     labelcolor "black"
@@ -187,7 +201,7 @@ graph
   ]
   node
   [
-    id 13
+    id 14
     name "O70318_proteomics"
     group "proteomics"
     labelcolor "black"
@@ -201,26 +215,12 @@ graph
   ]
   node
   [
-    id 14
-    name "P12960_proteomics"
-    group "proteomics"
-    labelcolor "black"
-    labelfamily "sans"
-    label "P12960"
-    color "lightgreen"
-    shape "circle"
-    labelcex 1
-    size 25.9421484375
-    size2 9.27703125
-  ]
-  node
-  [
     id 15
-    name "P28661_proteomics"
+    name "P07758_proteomics"
     group "proteomics"
     labelcolor "black"
     labelfamily "sans"
-    label "P28661"
+    label "P07758"
     color "lightgreen"
     shape "circle"
     labelcex 1
@@ -230,48 +230,6 @@ graph
   node
   [
     id 16
-    name "P43404_proteomics"
-    group "proteomics"
-    labelcolor "black"
-    labelfamily "sans"
-    label "P43404"
-    color "lightgreen"
-    shape "circle"
-    labelcex 1
-    size 25.9421484375
-    size2 9.27703125
-  ]
-  node
-  [
-    id 17
-    name "P61255_proteomics"
-    group "proteomics"
-    labelcolor "black"
-    labelfamily "sans"
-    label "P61255"
-    color "lightgreen"
-    shape "circle"
-    labelcex 1
-    size 25.9421484375
-    size2 9.27703125
-  ]
-  node
-  [
-    id 18
-    name "P62484_proteomics"
-    group "proteomics"
-    labelcolor "black"
-    labelfamily "sans"
-    label "P62484"
-    color "lightgreen"
-    shape "circle"
-    labelcex 1
-    size 25.9421484375
-    size2 9.27703125
-  ]
-  node
-  [
-    id 19
     name "P67984_proteomics"
     group "proteomics"
     labelcolor "black"
@@ -285,21 +243,7 @@ graph
   ]
   node
   [
-    id 20
-    name "Q00422_proteomics"
-    group "proteomics"
-    labelcolor "black"
-    labelfamily "sans"
-    label "Q00422"
-    color "lightgreen"
-    shape "circle"
-    labelcex 1
-    size 26.660390625
-    size2 9.27703125
-  ]
-  node
-  [
-    id 21
+    id 17
     name "Q3UV17_proteomics"
     group "proteomics"
     labelcolor "black"
@@ -313,7 +257,7 @@ graph
   ]
   node
   [
-    id 22
+    id 18
     name "Q60766_proteomics"
     group "proteomics"
     labelcolor "black"
@@ -327,49 +271,7 @@ graph
   ]
   node
   [
-    id 23
-    name "Q8BMJ3_proteomics"
-    group "proteomics"
-    labelcolor "black"
-    labelfamily "sans"
-    label "Q8BMJ3"
-    color "lightgreen"
-    shape "circle"
-    labelcex 1
-    size 28.8087890625
-    size2 9.27703125
-  ]
-  node
-  [
-    id 24
-    name "Q6PB66_proteomics"
-    group "proteomics"
-    labelcolor "black"
-    labelfamily "sans"
-    label "Q6PB66"
-    color "lightgreen"
-    shape "circle"
-    labelcex 1
-    size 28.096875
-    size2 9.27703125
-  ]
-  node
-  [
-    id 25
-    name "Q78PY7_proteomics"
-    group "proteomics"
-    labelcolor "black"
-    labelfamily "sans"
-    label "Q78PY7"
-    color "lightgreen"
-    shape "circle"
-    labelcex 1
-    size 28.096875
-    size2 9.27703125
-  ]
-  node
-  [
-    id 26
+    id 19
     name "Q8BG67_proteomics"
     group "proteomics"
     labelcolor "black"
@@ -383,147 +285,21 @@ graph
   ]
   node
   [
-    id 27
-    name "Q8BYK6_proteomics"
+    id 20
+    name "Q8C3Y4_proteomics"
     group "proteomics"
     labelcolor "black"
     labelfamily "sans"
-    label "Q8BYK6"
+    label "Q8C3Y4"
     color "lightgreen"
     shape "circle"
     labelcex 1
-    size 28.8151171875
+    size 28.4544140625
     size2 9.27703125
   ]
   node
   [
-    id 28
-    name "Q8JZL3_proteomics"
-    group "proteomics"
-    labelcolor "black"
-    labelfamily "sans"
-    label "Q8JZL3"
-    color "lightgreen"
-    shape "circle"
-    labelcex 1
-    size 26.6508984375
-    size2 9.27703125
-  ]
-  node
-  [
-    id 29
-    name "Q8K3W0_proteomics"
-    group "proteomics"
-    labelcolor "black"
-    labelfamily "sans"
-    label "Q8K3W0"
-    color "lightgreen"
-    shape "circle"
-    labelcex 1
-    size 29.8908984375
-    size2 9.27703125
-  ]
-  node
-  [
-    id 30
-    name "Q8K4Z3_proteomics"
-    group "proteomics"
-    labelcolor "black"
-    labelfamily "sans"
-    label "Q8K4Z3"
-    color "lightgreen"
-    shape "circle"
-    labelcex 1
-    size 27.7330078125
-    size2 9.27703125
-  ]
-  node
-  [
-    id 31
-    name "Q8VBY2_proteomics"
-    group "proteomics"
-    labelcolor "black"
-    labelfamily "sans"
-    label "Q8VBY2"
-    color "lightgreen"
-    shape "circle"
-    labelcex 1
-    size 28.8151171875
-    size2 9.27703125
-  ]
-  node
-  [
-    id 32
-    name "Q91V76_proteomics"
-    group "proteomics"
-    labelcolor "black"
-    labelfamily "sans"
-    label "Q91V76"
-    color "lightgreen"
-    shape "circle"
-    labelcex 1
-    size 27.3786328125
-    size2 9.27703125
-  ]
-  node
-  [
-    id 33
-    name "Q91XX6_proteomics"
-    group "proteomics"
-    labelcolor "black"
-    labelfamily "sans"
-    label "Q91XX6"
-    color "lightgreen"
-    shape "circle"
-    labelcex 1
-    size 28.096875
-    size2 9.27703125
-  ]
-  node
-  [
-    id 34
-    name "Q91YJ3_proteomics"
-    group "proteomics"
-    labelcolor "black"
-    labelfamily "sans"
-    label "Q91YJ3"
-    color "lightgreen"
-    shape "circle"
-    labelcex 1
-    size 27.014765625
-    size2 9.27703125
-  ]
-  node
-  [
-    id 35
-    name "Q9CQ22_proteomics"
-    group "proteomics"
-    labelcolor "black"
-    labelfamily "sans"
-    label "Q9CQ22"
-    color "lightgreen"
-    shape "circle"
-    labelcex 1
-    size 29.17265625
-    size2 9.27703125
-  ]
-  node
-  [
-    id 36
-    name "Q9CYR0_proteomics"
-    group "proteomics"
-    labelcolor "black"
-    labelfamily "sans"
-    label "Q9CYR0"
-    color "lightgreen"
-    shape "circle"
-    labelcex 1
-    size 29.5301953125
-    size2 9.27703125
-  ]
-  node
-  [
-    id 37
+    id 21
     name "Q9D071_proteomics"
     group "proteomics"
     labelcolor "black"
@@ -537,21 +313,7 @@ graph
   ]
   node
   [
-    id 38
-    name "Q9EQU5_proteomics"
-    group "proteomics"
-    labelcolor "black"
-    labelfamily "sans"
-    label "Q9EQU5"
-    color "lightgreen"
-    shape "circle"
-    labelcex 1
-    size 29.8908984375
-    size2 9.27703125
-  ]
-  node
-  [
-    id 39
+    id 22
     name "Q9ERF3_proteomics"
     group "proteomics"
     labelcolor "black"
@@ -565,1223 +327,783 @@ graph
   ]
   edge
   [
-    source 13
+    source 14
     target 0
-    weight 0.914144479415807
-    labelcolor "black"
-    color "#FA0000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 15
-    target 0
-    weight -0.804616270053548
-    labelcolor "black"
-    color "#00C300FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 21
-    target 0
-    weight -0.801167534525753
-    labelcolor "black"
-    color "#00C300FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 22
-    target 0
-    weight -0.851301357876849
-    labelcolor "black"
-    color "#00D800FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 26
-    target 0
-    weight -0.836443168554318
-    labelcolor "black"
-    color "#00D300FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 13
-    target 1
-    weight 0.926047801278608
-    labelcolor "black"
-    color "#FF0000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 15
-    target 1
-    weight -0.818790367242056
-    labelcolor "black"
-    color "#00C800FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 21
-    target 1
-    weight -0.819204562572065
-    labelcolor "black"
-    color "#00C800FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 22
-    target 1
-    weight -0.860069902531924
-    labelcolor "black"
-    color "#00DE00FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 26
-    target 1
-    weight -0.829511351847695
-    labelcolor "black"
-    color "#00CE00FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 13
-    target 2
-    weight 0.91483929603165
-    labelcolor "black"
-    color "#FA0000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 15
-    target 2
-    weight -0.814233912209809
-    labelcolor "black"
-    color "#00C800FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 21
-    target 2
-    weight -0.820302314536161
-    labelcolor "black"
-    color "#00C800FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 22
-    target 2
-    weight -0.846305306046805
-    labelcolor "black"
-    color "#00D800FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 26
-    target 2
-    weight -0.793659985291975
-    labelcolor "black"
-    color "#00BE00FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 13
-    target 3
-    weight 0.857601168268221
-    labelcolor "black"
-    color "#E60000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 15
-    target 3
-    weight -0.750874002946832
-    labelcolor "black"
-    color "#00A800FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 21
-    target 3
-    weight -0.743438243213113
-    labelcolor "black"
-    color "#00A300FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 22
-    target 3
-    weight -0.80113500247943
-    labelcolor "black"
-    color "#00C300FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 26
-    target 3
-    weight -0.803863436793826
-    labelcolor "black"
-    color "#00C300FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 13
-    target 4
-    weight 0.85457432327394
-    labelcolor "black"
-    color "#E60000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 15
-    target 4
-    weight -0.765604503114654
-    labelcolor "black"
-    color "#00AD00FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 21
-    target 4
-    weight -0.776566995918061
-    labelcolor "black"
-    color "#00B300FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 22
-    target 4
-    weight -0.78741692986762
-    labelcolor "black"
-    color "#00B800FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 26
-    target 4
-    weight -0.717232837385522
-    labelcolor "black"
-    color "#009700FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 37
-    target 4
-    weight 0.431572490612696
-    labelcolor "black"
-    color "#370000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 13
-    target 5
-    weight 0.885203134871608
+    weight 0.901034009011216
     labelcolor "black"
     color "#F20000FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
     source 15
-    target 5
-    weight -0.784442606794288
+    target 0
+    weight -0.792384550249686
     labelcolor "black"
     color "#00B800FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 21
-    target 5
-    weight -0.786705434001798
-    labelcolor "black"
-    color "#00B800FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 22
-    target 5
-    weight -0.821028628534548
-    labelcolor "black"
-    color "#00CE00FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 26
-    target 5
-    weight -0.784409763960331
-    labelcolor "black"
-    color "#00B800FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 10
-    target 6
-    weight 0.78411154342638
-    labelcolor "black"
-    color "#C90000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 11
-    target 6
-    weight -0.697356093845619
-    labelcolor "black"
-    color "#008D00FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 12
-    target 6
-    weight -0.885471917104869
-    labelcolor "black"
-    color "#00EE00FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 14
-    target 6
-    weight -0.897910518410809
-    labelcolor "black"
-    color "#00F300FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 16
-    target 6
-    weight -0.727511283081897
-    labelcolor "black"
-    color "#009D00FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
     source 17
-    target 6
-    weight 0.768966638142566
+    target 0
+    weight -0.79269755913763
     labelcolor "black"
-    color "#C60000FF"
+    color "#00B800FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
     source 18
-    target 6
-    weight -0.805853621673864
+    target 0
+    weight -0.837617300683882
     labelcolor "black"
-    color "#00C300FF"
+    color "#00CE00FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
     source 19
-    target 6
-    weight 0.842527950465202
-    labelcolor "black"
-    color "#E20000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 20
-    target 6
-    weight -0.702084340062076
-    labelcolor "black"
-    color "#008D00FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 23
-    target 6
-    weight -0.743324266479991
-    labelcolor "black"
-    color "#00A300FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 24
-    target 6
-    weight 0.81956932827847
-    labelcolor "black"
-    color "#D60000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 25
-    target 6
-    weight -0.831799223911431
-    labelcolor "black"
-    color "#00D300FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 26
-    target 6
-    weight 0.480509365559262
-    labelcolor "black"
-    color "#4A0000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 27
-    target 6
-    weight 0.725124578551088
-    labelcolor "black"
-    color "#B10000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 28
-    target 6
-    weight 0.812685996656728
-    labelcolor "black"
-    color "#D60000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 29
-    target 6
-    weight -0.838469112882953
-    labelcolor "black"
-    color "#00D300FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 30
-    target 6
-    weight -0.749539505757295
-    labelcolor "black"
-    color "#00A800FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 31
-    target 6
-    weight -0.804108276680203
-    labelcolor "black"
-    color "#00C300FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 32
-    target 6
-    weight -0.729255539075983
-    labelcolor "black"
-    color "#009D00FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 33
-    target 6
-    weight -0.811944023338013
+    target 0
+    weight -0.822102355955457
     labelcolor "black"
     color "#00C800FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
-    source 34
-    target 6
-    weight -0.782883082723258
+    source 14
+    target 1
+    weight -0.891538199257837
     labelcolor "black"
-    color "#00B800FF"
+    color "#00E900FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
-    source 35
-    target 6
-    weight 0.693104000455705
+    source 15
+    target 1
+    weight 0.784548451420177
     labelcolor "black"
-    color "#A50000FF"
+    color "#C60000FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
-    source 36
-    target 6
-    weight -0.828452551058468
+    source 17
+    target 1
+    weight 0.792705976585368
+    labelcolor "black"
+    color "#C90000FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 18
+    target 1
+    weight 0.82484640306088
+    labelcolor "black"
+    color "#D60000FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 19
+    target 1
+    weight 0.791314043271133
+    labelcolor "black"
+    color "#C90000FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 14
+    target 2
+    weight 0.913225676839164
+    labelcolor "black"
+    color "#F60000FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 15
+    target 2
+    weight -0.80338089125435
+    labelcolor "black"
+    color "#00BE00FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 17
+    target 2
+    weight -0.807888023903116
+    labelcolor "black"
+    color "#00BE00FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 18
+    target 2
+    weight -0.846845529133554
+    labelcolor "black"
+    color "#00D300FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 19
+    target 2
+    weight -0.821413999115918
+    labelcolor "black"
+    color "#00C800FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 14
+    target 3
+    weight 0.932764241627796
+    labelcolor "black"
+    color "#FF0000FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 15
+    target 3
+    weight -0.821115405096923
+    labelcolor "black"
+    color "#00C800FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 17
+    target 3
+    weight -0.834045778250779
     labelcolor "black"
     color "#00CE00FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
-    source 37
+    source 18
+    target 3
+    weight -0.860779771336294
+    labelcolor "black"
+    color "#00D800FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 19
+    target 3
+    weight -0.815513526283677
+    labelcolor "black"
+    color "#00C300FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 14
+    target 4
+    weight 0.882609380173906
+    labelcolor "black"
+    color "#EA0000FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 15
+    target 4
+    weight -0.775840699199031
+    labelcolor "black"
+    color "#00AD00FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 17
+    target 4
+    weight -0.77094893352775
+    labelcolor "black"
+    color "#00AD00FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 18
+    target 4
+    weight -0.823101551062865
+    labelcolor "black"
+    color "#00C800FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 19
+    target 4
+    weight -0.819946861671731
+    labelcolor "black"
+    color "#00C300FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 14
+    target 5
+    weight -0.737923513330401
+    labelcolor "black"
+    color "#009D00FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 15
+    target 5
+    weight 0.650297099074989
+    labelcolor "black"
+    color "#950000FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 17
+    target 5
+    weight 0.671209632891345
+    labelcolor "black"
+    color "#9D0000FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 18
+    target 5
+    weight 0.675607410572889
+    labelcolor "black"
+    color "#9D0000FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 19
+    target 5
+    weight 0.615047170260767
+    labelcolor "black"
+    color "#840000FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 21
+    target 5
+    weight -0.473169457071919
+    labelcolor "black"
+    color "#003200FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 14
     target 6
-    weight 0.753927181143492
+    weight -0.773628328774505
     labelcolor "black"
-    color "#BE0000FF"
+    color "#00AD00FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
-    source 38
+    source 15
     target 6
-    weight -0.822932451450554
+    weight 0.681929833183156
     labelcolor "black"
-    color "#00CE00FF"
+    color "#A20000FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
-    source 39
+    source 17
     target 6
-    weight 0.83852173098801
+    weight 0.706412373282537
     labelcolor "black"
-    color "#DE0000FF"
+    color "#A90000FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
-    source 10
-    target 7
-    weight -0.420341453767074
+    source 18
+    target 6
+    weight 0.707011596017815
     labelcolor "black"
-    color "#002000FF"
+    color "#A90000FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
-    source 12
-    target 7
-    weight 0.582096688831026
+    source 19
+    target 6
+    weight 0.63759470390696
     labelcolor "black"
-    color "#7B0000FF"
+    color "#910000FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
-    source 13
-    target 7
-    weight 0.689107893120705
+    source 21
+    target 6
+    weight -0.539112327023036
     labelcolor "black"
-    color "#A50000FF"
+    color "#004700FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
     source 14
     target 7
-    weight 0.669730180440049
+    weight 0.819832158472004
     labelcolor "black"
-    color "#9D0000FF"
+    color "#D20000FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
     source 15
     target 7
-    weight -0.58492532998028
+    weight -0.720513369664737
     labelcolor "black"
-    color "#005700FF"
+    color "#009200FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
     source 16
     target 7
-    weight 0.456776709098029
+    weight -0.400572064115096
     labelcolor "black"
-    color "#400000FF"
+    color "#001200FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
     source 17
     target 7
-    weight -0.418476573457232
+    weight -0.713770354571565
     labelcolor "black"
-    color "#002000FF"
+    color "#009200FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
     source 18
     target 7
-    weight 0.506699303858577
+    weight -0.765661995122771
     labelcolor "black"
-    color "#580000FF"
+    color "#00A800FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
     source 19
     target 7
-    weight -0.648483544757034
+    weight -0.767826510789763
     labelcolor "black"
-    color "#007200FF"
+    color "#00AD00FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
-    source 20
-    target 7
-    weight 0.468991173707219
-    labelcolor "black"
-    color "#450000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 21
-    target 7
-    weight -0.55947548004767
-    labelcolor "black"
-    color "#005100FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 22
-    target 7
-    weight -0.655280007942294
-    labelcolor "black"
-    color "#007700FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 24
-    target 7
-    weight -0.49917764918617
-    labelcolor "black"
-    color "#003C00FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 25
-    target 7
-    weight 0.555874725625502
-    labelcolor "black"
-    color "#6C0000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 26
-    target 7
-    weight -0.734752107541177
-    labelcolor "black"
-    color "#009D00FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 28
-    target 7
-    weight -0.526148036039715
-    labelcolor "black"
-    color "#004200FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 29
-    target 7
-    weight 0.552726955720163
-    labelcolor "black"
-    color "#6C0000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 31
-    target 7
-    weight 0.543483293318271
-    labelcolor "black"
-    color "#670000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 32
-    target 7
-    weight 0.591782240489213
-    labelcolor "black"
-    color "#7F0000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 33
-    target 7
-    weight 0.57494620648241
-    labelcolor "black"
-    color "#750000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 34
-    target 7
-    weight 0.543572118224675
-    labelcolor "black"
-    color "#670000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 36
-    target 7
-    weight 0.54988028221509
-    labelcolor "black"
-    color "#6C0000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 38
-    target 7
-    weight 0.590867813410502
-    labelcolor "black"
-    color "#7F0000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 39
-    target 7
-    weight -0.567402891398958
-    labelcolor "black"
-    color "#005100FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 10
+    source 14
     target 8
-    weight 0.442229338091
+    weight 0.908667398121824
     labelcolor "black"
-    color "#3C0000FF"
+    color "#F60000FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 11
-    target 8
-    weight -0.43804393467254
-    labelcolor "black"
-    color "#002700FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 13
-    target 8
-    weight 0.793985473785734
-    labelcolor "black"
-    color "#CD0000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
     source 15
     target 8
-    weight -0.718457397596282
+    weight -0.799617011927591
     labelcolor "black"
-    color "#009700FF"
+    color "#00BE00FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
     source 17
     target 8
-    weight 0.421852839617965
+    weight -0.807854490185536
     labelcolor "black"
-    color "#320000FF"
+    color "#00BE00FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
-    source 21
+    source 18
     target 8
-    weight -0.736183384450936
+    weight -0.840732826796212
     labelcolor "black"
-    color "#009D00FF"
+    color "#00CE00FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
-    source 22
+    source 19
     target 8
-    weight -0.727119525079609
+    weight -0.80673407776228
     labelcolor "black"
-    color "#009D00FF"
+    color "#00BE00FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 23
-    target 8
-    weight -0.423161549402769
-    labelcolor "black"
-    color "#002300FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 26
-    target 8
-    weight -0.631988698667192
-    labelcolor "black"
-    color "#006D00FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 27
-    target 8
-    weight 0.448174269569444
-    labelcolor "black"
-    color "#3C0000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 30
-    target 8
-    weight -0.487406591601644
-    labelcolor "black"
-    color "#003900FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 35
-    target 8
-    weight 0.421250803794405
-    labelcolor "black"
-    color "#320000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 37
-    target 8
-    weight 0.551687423743816
-    labelcolor "black"
-    color "#6C0000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 12
-    target 9
-    weight 0.438310932127395
-    labelcolor "black"
-    color "#370000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 13
-    target 9
-    weight 0.757003190830107
-    labelcolor "black"
-    color "#BE0000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
     source 14
     target 9
-    weight 0.543989313336636
+    weight -0.833849747178057
     labelcolor "black"
-    color "#670000FF"
+    color "#00CE00FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
     source 15
     target 9
-    weight -0.651816016761642
+    weight 0.733631040876875
     labelcolor "black"
-    color "#007200FF"
+    color "#B10000FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 17
+    target 9
+    weight 0.738944437843428
+    labelcolor "black"
+    color "#B50000FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 18
+    target 9
+    weight 0.772637254962449
+    labelcolor "black"
+    color "#C10000FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
   ]
   edge
   [
     source 19
     target 9
-    weight -0.53556441768935
+    weight 0.746640760317486
     labelcolor "black"
-    color "#004700FF"
+    color "#BA0000FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 13
+    target 10
+    weight -0.939089252892816
+    labelcolor "black"
+    color "#00FF00FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 16
+    target 10
+    weight 0.912853303850315
+    labelcolor "black"
+    color "#F60000FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 19
+    target 10
+    weight 0.437376429877138
+    labelcolor "black"
+    color "#370000FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 20
+    target 10
+    weight 0.838432621075144
+    labelcolor "black"
+    color "#D90000FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
   ]
   edge
   [
     source 21
-    target 9
-    weight -0.633646978335885
+    target 10
+    weight 0.765725593812359
     labelcolor "black"
-    color "#006D00FF"
+    color "#BE0000FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
   edge
   [
     source 22
-    target 9
-    weight -0.714040083103638
+    target 10
+    weight 0.883628792287035
+    labelcolor "black"
+    color "#EA0000FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 14
+    target 11
+    weight 0.805285170693798
+    labelcolor "black"
+    color "#CD0000FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 15
+    target 11
+    weight -0.709689613849465
+    labelcolor "black"
+    color "#008D00FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 17
+    target 11
+    weight -0.732966637176475
+    labelcolor "black"
+    color "#009700FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 18
+    target 11
+    weight -0.737051643636031
+    labelcolor "black"
+    color "#009D00FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 19
+    target 11
+    weight -0.669907932001271
+    labelcolor "black"
+    color "#007D00FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 21
+    target 11
+    weight 0.524027730202734
+    labelcolor "black"
+    color "#5D0000FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 14
+    target 12
+    weight 0.75316703302484
+    labelcolor "black"
+    color "#BA0000FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 15
+    target 12
+    weight -0.661582521407442
+    labelcolor "black"
+    color "#007700FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 16
+    target 12
+    weight -0.453244691951854
+    labelcolor "black"
+    color "#002A00FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 17
+    target 12
+    weight -0.650174703855902
+    labelcolor "black"
+    color "#007200FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 18
+    target 12
+    weight -0.706021269011323
+    labelcolor "black"
+    color "#008D00FF"
+    lty "solid"
+    width 1
+    labelcex 0.717590225033552
+  ]
+  edge
+  [
+    source 19
+    target 12
+    weight -0.720086925944497
     labelcolor "black"
     color "#009200FF"
     lty "solid"
     width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 25
-    target 9
-    weight 0.42309281330759
-    labelcolor "black"
-    color "#320000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 26
-    target 9
-    weight -0.762500859980115
-    labelcolor "black"
-    color "#00AD00FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 29
-    target 9
-    weight 0.416959835833042
-    labelcolor "black"
-    color "#2D0000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 31
-    target 9
-    weight 0.416665648469868
-    labelcolor "black"
-    color "#2D0000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 32
-    target 9
-    weight 0.501742081146692
-    labelcolor "black"
-    color "#540000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 33
-    target 9
-    weight 0.453500539518495
-    labelcolor "black"
-    color "#400000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 34
-    target 9
-    weight 0.423747026697067
-    labelcolor "black"
-    color "#320000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 36
-    target 9
-    weight 0.416683637907164
-    labelcolor "black"
-    color "#2D0000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 38
-    target 9
-    weight 0.469834259684741
-    labelcolor "black"
-    color "#450000FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
-  ]
-  edge
-  [
-    source 39
-    target 9
-    weight -0.435324523498487
-    labelcolor "black"
-    color "#002700FF"
-    lty "solid"
-    width 1
-    labelcex 0.609941319034088
+    labelcex 0.717590225033552
   ]
 ]

@@ -349,7 +349,7 @@ Y <- factor(response_list)
 
 
 summary(Y)
-# As mentioned in the methods pages, it is strongly advised that prior to using the DIABLO framework that the data be examinsed in a non-integrative context. 
+# As mentioned in the methods pages, it is strongly advised that prior to using the DIABLO framework that the data be examined in a non-integrative context. 
 # Here, the correlation between the top 25 features of each dataframe (in a pairwise fashion) are shown in Figure
 
 list.keepX = c(25, 25) # select arbitrary values of features to keep

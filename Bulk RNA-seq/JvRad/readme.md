@@ -65,6 +65,13 @@ plotDisp
 - Displaying the Go analysis results using the `GO_molecular_functions` function. 
 
 
+## GO_Cellular_Component
+
+![GO_Cellular_Component](GO_Cellular_Component.png)
+
+- Displaying the Go cellular component analysis results using the `GO_Cellular_Component` function. 
+
+
 
 
 ### Additional Notes

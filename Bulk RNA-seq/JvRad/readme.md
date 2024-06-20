@@ -27,7 +27,7 @@ The contents of each subdirectory may vary depending on the specific data integr
 
 ![HeatMap](Heatmap_forJvRad.png)
 
-- Displaying KEGG pathway enrichment analysis results using the `Heatmap` function. This plot shows the enriched KEGG pathways and their associated statistics, helping to identify pathways that are significantly enriched among differentially expressed proteins.
+- Displaying KEGG pathway enrichment analysis results using the `Heatmap_forJvRad` function. This plot shows the enriched KEGG pathways and their associated statistics, helping to identify pathways that are significantly enriched among differentially expressed proteins.
 
 
 

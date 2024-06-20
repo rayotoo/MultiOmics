@@ -71,6 +71,14 @@ plotDisp
 
 - Displaying the Go cellular component analysis results using the `GO_Cellular_Component` function. 
 
+## cnet_plot
+
+![cnet_plot](cnet_plot.png)
+
+- Displaying the cnet plot results using the `cnet_plot` function. 
+
+
+
 
 
 

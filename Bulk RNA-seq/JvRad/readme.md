@@ -58,6 +58,13 @@ plotDisp
 
 - Displaying the KEGG results using the `GO_Biological_processes` function. 
 
+## GO_molecular_functions
+
+![GO_molecular_functions](GO_molecular_functions.png)
+
+- Displaying the Go analysis results using the `GO_molecular_functions` function. 
+
+
 
 
 ### Additional Notes

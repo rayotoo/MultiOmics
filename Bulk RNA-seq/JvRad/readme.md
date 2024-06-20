@@ -11,6 +11,26 @@ The contents of each subdirectory may vary depending on the specific data integr
 * **Data Files ( `.csv` or `.txt` )**: These files store the raw omics data, such as RNA-Seq counts, proteomics measurements, and DNA methylation levels.
 * **Plots ( `.png` )**: These image files depict the results of the analysis, including heatmaps, network plots etc.
 
+## Files and Descriptions
+
+### JvRad_RNAseq_DEG.Rmd
+- **Description**: R Markdown file containing the entire workflow for the JvRAD rnaseq analysis.
+
+## Heatmap
+
+![PCAplot](PCA_plot.png)
+
+- Displaying PCA plot  using the `PCA_plot` function. ........
+
+
+## Heatmap
+
+![HeatMap](Heatmap_forJvRad.png)
+
+- Displaying KEGG pathway enrichment analysis results using the `Heatmap` function. This plot shows the enriched KEGG pathways and their associated statistics, helping to identify pathways that are significantly enriched among differentially expressed proteins.
+
+
+
 
 
 ### Additional Notes

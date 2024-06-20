@@ -6,7 +6,7 @@ output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_knit$set(root.dir = "/Users/raymondotoo/OneDrive - UA Little Rock/MultiOmics/Bulk RNA-seq/JvRad/")
+knitr::opts_knit$set(root.dir = "/Users/raymondotoo/OneDrive - University of Arkansas for Medical Sciences/MultiOmics/Bulk RNA-seq/JvRad/")
 ```
 
 ## R Markdown
@@ -195,23 +195,40 @@ write.table(x = as.data.frame(results_sig),
 
 #Principal Component Analysis (PCA)
 ```{r}
+# Load necessary libraries
 library("ggplot2")
+library("DESeq2")
 
 # Convert all samples to rlog
 ddsMat_rlog <- rlog(ddsMat, blind = FALSE)
 
-# Plot PCA by column variable
-plotPCA(ddsMat_rlog, intgroup = "Group", ntop = 500) +
-  theme_bw() + # remove default ggplot2 theme
-  geom_point(size = 5) + # Increase point size
-  scale_y_continuous(limits = c(-5, 5)) + # change limits to fix figure dimensions
-  ggtitle(label = "Principal Component Analysis (PCA)", 
-          subtitle = "Top 500 most variable genes") 
+# Plot PCA by column variable and save as a PNG file
+png(filename = "PCA_plot.png", width = 10, height = 10, units = "in", res = 600)
+
+# Extract the PCA data
+pcaData <- plotPCA(ddsMat_rlog, intgroup = "Group", ntop = 500, returnData = TRUE)
+
+# Create the PCA plot
+ggplot(pcaData, aes(x = PC1, y = PC2, color = Group)) +
+  geom_point(size = 5) +  # Increase point size
+  scale_y_continuous(limits = c(-10, 20)) +  # Adjust y-axis limits if necessary
+  theme_bw() +  # Use a clean theme
+  ggtitle(label = "Principal Component Analysis (PCA)",
+          subtitle = "Top 500 most variable genes")
+
+dev.off()
+
 ```
+
+
+
 # 9b. Heatmap
 ```{r}
 library("pheatmap")
 library("RColorBrewer")
+
+png(filename = "Heatmap_forJvRad.png",width = 10, height = 10, units = "in", res = 600)
+
 
 # Convert all samples to rlog
 ddsMat_rlog <- rlog(ddsMat, blind = FALSE)
@@ -242,7 +259,7 @@ pheatmap(mat = mat,
          fontsize = 6.5, # Make fonts smaller
          cellwidth = 55, # Make the cells wider
          show_colnames = F,
-          filename = "Heatmap_forJvRad.pdf"
+          filename = "Heatmap_forJvRad.png"
         )
 ```
 # 9c. Volcano Plot
@@ -438,9 +455,12 @@ barplot(go_enrich,
 # categorySize can be either 'pvalue' or 'geneNum'
 library("clusterProfiler")
 
+png(filename = "cnet_plot.png",width = 10, height = 10, units = "in", res = 600)
+
 cnetplot(go_enrich, categorySize="pvalue", foldChange=gene_matrix)
 
 ```
+
 ```{r}
 ## Install and run once
 # Install BiocManager if not already installed

@@ -52,7 +52,7 @@ plotDisp
 - Displaying the KEGG results using the `pKEGG_Enrichment_Pathways` function. 
 
 
-## KEGGPathways
+## Go Biological Processes
 
 ![GO_Biological_processes](GO_Biological_processes.png)
 

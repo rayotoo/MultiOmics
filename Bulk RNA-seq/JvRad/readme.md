@@ -77,7 +77,11 @@ plotDisp
 
 - Displaying the cnet plot results using the `cnet_plot` function. 
 
+## KEGG_mmu04390
 
+![KEGG_mmu04390](mmu04390.png)
+
+- Displaying the KEGG pathway for the specified processes results using the `KEGG_mmu04390` function. 
 
 
 

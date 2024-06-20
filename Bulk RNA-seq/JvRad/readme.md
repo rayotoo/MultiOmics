@@ -27,9 +27,36 @@ The contents of each subdirectory may vary depending on the specific data integr
 
 ![HeatMap](Heatmap_forJvRad.png)
 
-- Displaying KEGG pathway enrichment analysis results using the `Heatmap_forJvRad` function. This plot shows the enriched KEGG pathways and their associated statistics, helping to identify pathways that are significantly enriched among differentially expressed proteins.
+- Displaying the heatmap results using the `Heatmap` function. 
 
 
+## Volcano
+
+![Volcano](Volcano.png)
+
+- Displaying the heatmap results using the `Volcano` function. 
+
+
+## plotDisp
+
+![plotDisp](plotDisp.png)
+
+- Displaying the plotDisp results using the `plotDisp` function. 
+plotDisp
+
+
+## KEGGPathways
+
+![KEGGPathways](pKEGG_Enrichment_Pathways.png)
+
+- Displaying the KEGG results using the `pKEGG_Enrichment_Pathways` function. 
+
+
+## KEGGPathways
+
+![GO_Biological_processes](GO_Biological_processes.png)
+
+- Displaying the KEGG results using the `GO_Biological_processes` function. 
 
 
 

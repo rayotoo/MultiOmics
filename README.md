@@ -55,3 +55,7 @@ https://nbisweden.github.io/workshop_omicsint_ISMBECCB/schedule.html
 ```
 https://nbisweden.github.io/workshop_omicsint_ISMBECCB/session_ml/SupervisedOMICsIntegration/supervised_omics_integr_CLL.html
 ```
+## Spring 2021 6.874 Computational Systems Biology: Deep Learning in the Life Sciences (MIT course)
+```
+https://mit6874.github.io/
+```

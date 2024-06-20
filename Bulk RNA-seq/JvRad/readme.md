@@ -34,7 +34,7 @@ The contents of each subdirectory may vary depending on the specific data integr
 
 ![Volcano](Volcano.png)
 
-- Displaying the heatmap results using the `Volcano` function. 
+- Displaying the volcano plot for the analysis using the `Volcano` function. 
 
 
 ## plotDisp

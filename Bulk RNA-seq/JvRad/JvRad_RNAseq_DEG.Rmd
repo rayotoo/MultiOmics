@@ -106,7 +106,7 @@ metadata
 metadata <- metadata[rownames(metadata) != 'JvRad_Rhipp_204', ]
 metadata
 
-# B. Remove the row with row name JvRad_Rhipp_204 from metadata
+# B. Remove the columns with row name JvRad_Rhipp_204 from metadata
 countdata <- countdata[, !names(countdata) %in% 'JvRad_Rhipp_204']
 countdata
 ```

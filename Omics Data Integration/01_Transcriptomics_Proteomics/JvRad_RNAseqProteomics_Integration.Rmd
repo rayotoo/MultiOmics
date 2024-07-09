@@ -88,6 +88,15 @@ proteomics_combined <- proteomics_combined[,!colnames(proteomics_combined) %in%
 
 proteomics_combined
 ```
+## filter-out sample s204
+```{r}
+proteomics_combined <- proteomics_combined[, !names(proteomics_combined) %in% 's204']
+proteomics_combined
+```
+
+
+
+
 ## 4. Transpose the proteomics dataframe
 ```{r}
 #transpose proteomics dataframe
@@ -184,7 +193,7 @@ rownames(combined_omics)
 
 ```{r}
 #create a list for the reponse variable. Which is the treatment groups
-response_list <- c("sham","sham","sham","sham","sham","IR","IR","IR","IR","IR")
+response_list <- c("sham","sham","sham","sham","sham","IR","IR","IR","IR")
 
 response_factor <- factor(response_list)
 response_factor
@@ -344,7 +353,7 @@ X <- list( mRNA = rna_matrix,
 #X[1]
 
 #create the response variable as a factor
-response_list <- c("sham","sham","sham","sham","sham","IR","IR","IR","IR","IR")
+response_list <- c("sham","sham","sham","sham","sham","IR","IR","IR","IR")
 Y <- factor(response_list)
 
 

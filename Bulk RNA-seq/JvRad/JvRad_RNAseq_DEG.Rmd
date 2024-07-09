@@ -220,7 +220,72 @@ dev.off()
 
 ```
 
+## Add sample names to PCA plot to identify outlier
+```{r}
+# Load necessary libraries
+library("ggplot2")
+library("DESeq2")
+library("ggrepel")  # For better text placement
 
+# Convert all samples to rlog
+ddsMat_rlog <- rlog(ddsMat, blind = FALSE)
+
+# Plot PCA by column variable and save as a PNG file
+png(filename = "PCA_plot_2.png", width = 10, height = 10, units = "in", res = 600)
+
+# Extract the PCA data
+pcaData <- plotPCA(ddsMat_rlog, intgroup = "Group", ntop = 500, returnData = TRUE)
+
+# Add sample names to the PCA data
+pcaData$sample <- row.names(pcaData)
+
+# Create the PCA plot
+ggplot(pcaData, aes(x = PC1, y = PC2, color = Group, label = sample)) +
+  geom_point(size = 5) +  # Increase point size
+  geom_text_repel(size = 3) +  # Add sample names with better placement
+  scale_y_continuous(limits = c(-10, 10)) +  # Adjust y-axis limits if necessary
+  theme_bw() +  # Use a clean theme
+  ggtitle(label = "Principal Component Analysis (PCA)",
+          subtitle = "Top 500 most variable genes")
+
+dev.off()
+
+```
+
+#exclude selected sample from the plot
+```{r}
+# Load necessary libraries
+library("ggplot2")
+library("DESeq2")
+library("ggrepel")  # For better text placement
+
+# Convert all samples to rlog
+ddsMat_rlog <- rlog(ddsMat, blind = FALSE)
+
+# Plot PCA by column variable and save as a PNG file
+png(filename = "PCA_plot_3.png", width = 10, height = 10, units = "in", res = 600)
+
+# Extract the PCA data
+pcaData <- plotPCA(ddsMat_rlog, intgroup = "Group", ntop = 500, returnData = TRUE)
+
+# Add sample names to the PCA data
+pcaData$sample <- row.names(pcaData)
+
+# Exclude the specified sample
+pcaData <- pcaData[pcaData$sample != "JvRad_Rhipp_204", ]
+
+# Create the PCA plot
+ggplot(pcaData, aes(x = PC1, y = PC2, color = Group, label = sample)) +
+  geom_point(size = 5) +  # Increase point size
+  geom_text_repel(size = 3) +  # Add sample names with better placement
+  scale_y_continuous(limits = c(-10, 10)) +  # Adjust y-axis limits if necessary
+  theme_bw() +  # Use a clean theme
+  ggtitle(label = "Principal Component Analysis (PCA)",
+          subtitle = "Top 500 most variable genes")
+
+dev.off()
+
+```
 
 # 9b. Heatmap
 ```{r}
@@ -258,10 +323,13 @@ pheatmap(mat = mat,
          annotation_colors = ann_colors,# Change the default colors of the annotations
          fontsize = 6.5, # Make fonts smaller
          cellwidth = 55, # Make the cells wider
-         show_colnames = F,
+         show_colnames = T,
           filename = "Heatmap_forJvRad.png"
         )
 ```
+
+
+
 # 9c. Volcano Plot
 ```{r}
 library("dplyr")

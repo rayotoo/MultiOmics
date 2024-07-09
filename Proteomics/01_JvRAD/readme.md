@@ -7,6 +7,11 @@
 ### JvRAD.Rmd
 - **Description**: R Markdown file containing the entire workflow for the JvRAD proteomics analysis.
 
+## PCA plot
+
+![PCAplot](PCA_plot.png)
+
+- Displaying plot of a Principal Component Analysis. This plot helps to identify outliers in the data that may skew the results, using the `plot_pca` function.  
 
 ## EnrichMKEGG Plot
 

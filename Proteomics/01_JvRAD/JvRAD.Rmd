@@ -20,10 +20,10 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
 # Use BiocManager to install Bioconductor packages
-BiocManager::install("DEP")
-BiocManager::install("dplyr")
-BiocManager::install("proteus")
-BiocManager::install("SummarizedExperiment")
+#BiocManager::install("DEP")
+#BiocManager::install("dplyr")
+#BiocManager::install("proteus")
+#BiocManager::install("SummarizedExperiment")
 
 ```
 
@@ -55,6 +55,12 @@ head(jvrad)
 ```{r}
 data_unique <- make_unique(jvrad, "uniprot_id", "uniprot_id", delim =";")
 data_unique
+
+################ Filter out sample 204 as it was identified as an outlier in the RNA seq. Important because this will be integrated with the RNAseq. 
+
+# A. Remove the columns with row name JvRad_Rhipp_204 from metadata
+data_unique <- data_unique[, !names(data_unique) %in% 's204']
+data_unique
 ```
 
 ```{r}
@@ -81,15 +87,18 @@ label <- c("s200", "s201", "s202", "s203", "s204",
 condition <- c("ir", "ir", "ir", "ir", "ir", 
                "sham", "sham", "sham", "sham", "sham")
 
-
 replicate <- rep(1:5,2)
-
 label <- as.character(label)
 condition <- as.character(condition)
 
 
 #create the dataframe
 experimental_design <- data.frame(label=label, condition=condition, replicate = as.double(replicate))
+experimental_design
+
+
+# Remove the row where the label column has the value 's204'
+experimental_design <- experimental_design[experimental_design$label != 's204', ]
 experimental_design
 
 typeof(experimental_design)
@@ -206,7 +215,10 @@ plot_imputation(data_norm, data_imp)
 ## 07_Performs Principal Component Analysis (PCA) with plot_pca to visualize sample clustering based on protein expression.
 ### Use all detected proteins and do a PCA for visualizing if there is clustering of replicates and conditions.
 ```{r}
+
 library("ggplot2")
+# Plot PCA by column variable and save as a PNG file
+png(filename = "PCA_plot.png", width = 10, height = 10, units = "in", res = 600)
 
 sub_cols <- c(ir= "#e63946", sham="blue")
 
@@ -364,9 +376,9 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
 # Use BiocManager to install Bioconductor packages
-BiocManager::install("pathview")
-BiocManager::install("enrichplot")
-BiocManager::install("DOSE")
+#BiocManager::install("pathview")
+#BiocManager::install("enrichplot")
+#BiocManager::install("DOSE")
 ```
 
 ```{r}
@@ -385,7 +397,7 @@ foldchanges.1 = jv_rad$ir_vs_sham_ratio
 names(foldchanges.1) = jv_rad$name
 
 # we use a threshold of -1.2 or + 1.2
-gene <- names(foldchanges.1)[abs(foldchanges.1) > 0.00]
+gene <- names(foldchanges.1)[abs(foldchanges.1) > 0.0]
 gene
 ```
 
@@ -422,11 +434,11 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
 # Use BiocManager to install Bioconductor packages
-BiocManager::install("org.Mm.eg.db")
-BiocManager::install("GO.db")
-BiocManager::install("topGO")
-BiocManager::install("KEGG.db")
-BiocManager::install("ReactomePA")
+#BiocManager::install("org.Mm.eg.db")
+#BiocManager::install("GO.db")
+#BiocManager::install("topGO")
+#BiocManager::install("KEGG.db")
+#BiocManager::install("ReactomePA")
 
 ```
 

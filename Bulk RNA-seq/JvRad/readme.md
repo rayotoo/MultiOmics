@@ -71,6 +71,13 @@ plotDisp
 
 - Displaying the Go cellular component analysis results using the `GO_Cellular_Component` function. 
 
+## GO_Terms_Bar_Graph_Grouped
+
+![GO_Cellular_Component](GO_Terms_Bar_Graph_Grouped.png)
+
+- Displaying the plot of the grouped 3 main GO root ontologies. A custom script was used to generate this plot
+
+
 ## cnet_plot
 
 ![cnet_plot](cnet_plot.png)

@@ -51,6 +51,12 @@ plotDisp
 
 - Displaying the KEGG results using the `pKEGG_Enrichment_Pathways` function. 
 
+## GO Terms Bar Graph Grouped
+
+![GO_Cellular_Component](GO_Terms_Bar_Graph_Grouped.png)
+
+- Displaying the plot of the grouped 3 main GO root ontologies. A custom script was used to generate this plot
+
 
 ## Go Biological Processes
 
@@ -58,24 +64,18 @@ plotDisp
 
 - Displaying the KEGG results using the `GO_Biological_processes` function. 
 
-## GO_molecular_functions
+## GO molecular functions
 
 ![GO_molecular_functions](GO_molecular_functions.png)
 
 - Displaying the Go analysis results using the `GO_molecular_functions` function. 
 
 
-## GO_Cellular_Component
+## GO Cellular Component
 
 ![GO_Cellular_Component](GO_Cellular_Component.png)
 
 - Displaying the Go cellular component analysis results using the `GO_Cellular_Component` function. 
-
-## GO_Terms_Bar_Graph_Grouped
-
-![GO_Cellular_Component](GO_Terms_Bar_Graph_Grouped.png)
-
-- Displaying the plot of the grouped 3 main GO root ontologies. A custom script was used to generate this plot
 
 
 ## cnet_plot

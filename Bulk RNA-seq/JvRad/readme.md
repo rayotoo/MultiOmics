@@ -45,37 +45,19 @@ The contents of each subdirectory may vary depending on the specific data integr
 plotDisp
 
 
-## KEGGPathways
-
-![KEGGPathways](pKEGG_Enrichment_Pathways.png)
-
-- Displaying the KEGG results using the `pKEGG_Enrichment_Pathways` function. 
-
 ## GO Terms Bar Graph Grouped
 
 ![GO_Cellular_Component](GO_Terms_Bar_Graph_Grouped.png)
 
 - Displaying the plot of the grouped 3 main GO root ontologies. A custom script was used to generate this plot
 
+## KEGGPathways
 
-## Go Biological Processes
+![KEGGPathways](pKEGG_Enrichment_Pathways.png)
 
-![GO_Biological_processes](GO_Biological_processes.png)
-
-- Displaying the KEGG results using the `GO_Biological_processes` function. 
-
-## GO molecular functions
-
-![GO_molecular_functions](GO_molecular_functions.png)
-
-- Displaying the Go analysis results using the `GO_molecular_functions` function. 
+- Displaying the KEGG results using the `pKEGG_Enrichment_Pathways` function. 
 
 
-## GO Cellular Component
-
-![GO_Cellular_Component](GO_Cellular_Component.png)
-
-- Displaying the Go cellular component analysis results using the `GO_Cellular_Component` function. 
 
 
 ## cnet_plot

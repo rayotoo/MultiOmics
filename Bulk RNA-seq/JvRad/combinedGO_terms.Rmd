@@ -1,0 +1,70 @@
+---
+title: "GO_combined"
+author: "Raymond Otoo"
+date: "2024-08-02"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir = "/Users/raymondotoo/OneDrive - University of Arkansas for Medical Sciences/MultiOmics/Bulk RNA-seq/JvRad/")
+```
+
+
+
+```{r}
+# Load necessary libraries
+library(dplyr)
+library(ggplot2)
+
+# Read the files
+cc_results <- read.csv("GO_Cellular_Components_Results.csv")
+mf_results <- read.csv("GO_Molecular_Functions_Results.csv")
+bp_results <- read.csv("GO_Biological_Processes_Results.csv")
+
+# Select the first 10 rows and add a class column
+cc_results <- cc_results %>% slice(1:10) %>% mutate(Class = "Cellular Components")
+mf_results <- mf_results %>% slice(1:10) %>% mutate(Class = "Molecular Functions")
+bp_results <- bp_results %>% slice(1:10) %>% mutate(Class = "Biological Processes")
+
+# Combine the dataframes
+combined_results <- bind_rows(cc_results, mf_results, bp_results)
+
+# Print the resulting dataframe
+print(combined_results)
+
+# Save the combined dataframe to a new CSV file
+write.csv(combined_results, "Combined_GO_Results.csv", row.names = FALSE)
+
+# Adjust the factor levels of Description to ensure ordering by Class
+combined_results <- combined_results %>%
+  mutate(Description = factor(Description, levels = unique(Description[order(Class)])))
+
+# Define custom colors for each class
+custom_colors <- c("Cellular Components" = "#1b9e77",
+                   "Molecular Functions" = "#d95f02",
+                   "Biological Processes" = "#7570b3")
+
+# Plot the terms by class and count as a bar graph, grouped by class
+p <- ggplot(combined_results, aes(x = Description, y = Count, fill = Class)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  labs(x = "GO Terms", y = "Count") +  # Add axis labels
+  theme_minimal() +
+  theme(
+    axis.text.y = element_text(size = 12, angle = 0, hjust = 1), # Increase size of y-axis text
+    axis.text.x = element_text(size = 12), # Increase size of x-axis text
+    axis.title = element_text(size = 14), # Increase size of axis titles
+    legend.text = element_text(size = 12), # Increase size of legend text
+    legend.title = element_text(size = 14) # Increase size of legend title
+  ) +
+  scale_fill_manual(values = custom_colors)
+
+# Display the plot
+print(p)
+
+# Save the plot with increased width
+ggsave("GO_Terms_Bar_Graph_Grouped.png", plot = p, width = 14, height = 10)
+
+
+```
+

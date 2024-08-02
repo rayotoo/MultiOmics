@@ -7,7 +7,8 @@ This repository contains the pipeline for analyzing the RNA seq data for the JvR
 
 The contents of each subdirectory may vary depending on the specific data integration approach. However, common file types you might encounter include:
 
-* **R Markdown Script ( `.Rmd` )**: This file contains the code for data preprocessing, integration analysis, and visualization.
+* **R Markdown Script ( `JvRad_RNAseq_DEG.Rmd` )**: This file contains the code for data preprocessing, integration analysis, and visualization.
+* **R Markdown Script ( `combinedGO_terms.Rmd` )**: this R Markdown document reads and processes GO term data from three categories, combines them into a single data frame, creates a bar plot grouped by GO term class, and saves both the combined data and the plot as files.
 * **Data Files ( `.csv` or `.txt` )**: These files store the raw omics data, such as RNA-Seq counts, proteomics measurements, and DNA methylation levels.
 * **Plots ( `.png` )**: These image files depict the results of the analysis, including heatmaps, network plots etc.
 

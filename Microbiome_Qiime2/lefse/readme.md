@@ -1,17 +1,16 @@
+# Running lefse (On Linux systems)
 Will use 3 environments due to the the dependancy issuses with the outdated lefse libraries and tools:
-1) qimme2 environment(`qiime2-amplicon-2024.2`) for running 'dokdo prepare-lefse'
-2) lefse envoronment( `lefse`) for running lefse
-3) environment (`lefse_plots`) which uses python scripts to plot the lefse plots
-
-# Running lefse
+1) qimme2 environment(`qiime2-amplicon-2024.2`) for running 'dokdo prepare-lefse'.
+2) lefse envoronment( `lefse`) for running lefse.
+3) 3rd environment (`lefse_plots`) which uses python scripts to plot the lefse plots.
 
 # 1. Run  this in a qiime2 environment `qiime2-amplicon-2024.2`
 The inputs needed are:
-i) `table-no-ecmu.qza`
-ii) taxonomy file - `taxonomy.qza`
-iii) metadata - `JvSFN_diet-Metadata.tsv`
+1) `table-no-ecmu.qza`
+2) taxonomy file - `taxonomy.qza`
+3) metadata - `JvSFN_diet-Metadata.tsv`
 
-confirm dokdoinstallation:
+confirm dokdo installation:
 ```
 dokdo -h
 ```
@@ -42,7 +41,7 @@ conda activate lefse
 conda install -c bioconda -c conda-forge lefse
 ```
 
-confirm lefse installation
+confirm lefse installation:
 ```
 lefse-format_input.py -h
 ```
@@ -58,14 +57,16 @@ lefse-format_input.py \
 --output_table ./formatted_table.tsv
 ```
 
-run  lefse
+run  lefse:
 ```
 run_lefse.py \
 ./formatted_table.in \
 ./output.res
 ```
-# 3. Plot histogram with lefse's output `output.res`
-Going to use custom script ( a modified script from the lefse package which was presenting some errors when run in the lefse environment that is created above.
+# 3. Plot histogram with lefse's output in 3rd env `lefse_plots`
+The input file here is `output.res`
+
+Going to use a custom script ( a modified script from the lefse package which was presenting some errors when run in the lefse environment that is created above.
 
 Create and activate 3rd python 3 environment to plot this :
 ```
@@ -73,7 +74,7 @@ conda create -n lefse_plots
 conda activate lefse_plots
 ```
 
-run script `lefse_standalone_script.py` to plot the histogram
+run script `lefse_standalone_script.py` to plot the histogram:
 ```
 python3 ./lefse_standalone_script.py output.res out_his.png
 ```

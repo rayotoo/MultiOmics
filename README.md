@@ -36,7 +36,7 @@ Welcome to the **Multi-Omics Data Analysis Project** repository! This repository
 
 ## 📄 License:
 
-* This project is licensed under the XXX. See the `LICENSE` file for details. **(Remember to replace XXX with the actual license identifier)**
+* This project is licensed under the MIT License. See the `LICENSE` file for details.
 
 ## 📧 Contact:
 
